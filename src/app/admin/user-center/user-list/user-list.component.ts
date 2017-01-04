@@ -308,13 +308,16 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
           let payload = {id};
           if (mobile_phone.length == 11) {
             payload['mobile_phone'] = mobile_phone;
+            payload['mobile_phone_verified'] = true;
           }
           if (email.length > 0) {
             payload['email'] = email;
+            payload['email_verified'] = true;
           }
           let sc = this.http.patch(this.gs.updateUserURL, payload, options).subscribe(
             (req) => {
               sc.unsubscribe();
+              window.location.reload();
             },
             (err) => {
               console.log(err);
@@ -322,8 +325,11 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
             () => {
             }
           );
+        } else {
+          window.location.reload();
         }
-        this.refresh();
+        this.currentForm.reset();
+        $('#create_user_modal').modal('hide');
       },
       (err) => {
         console.log(err);
