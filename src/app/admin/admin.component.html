@@ -1,0 +1,37 @@
+<body class="nav-md">
+<div class="container body">
+  <div class="main_container">
+    <div class="col-md-3 left_col">
+      <div class="left_col scroll-view">
+        <div class="navbar nav_title" style="border: 0;">
+          <a routerLink="/" class="site_title"><i class="fa fa-paw"></i> <span>JimID 管理中心</span></a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+          <div class="profile_pic">
+            <img src="../../assets/images/img.jpg" alt="..." class="img-circle profile_img">
+          </div>
+          <div class="profile_info">
+            <span>Welcome,</span>
+            <h2>{{current_user.login_name}}</h2>
+          </div>
+        </div>
+        <!-- /menu profile quick info -->
+        <br />
+        <app-sidebar-menu></app-sidebar-menu>
+        <app-footer-menu></app-footer-menu>
+      </div>
+    </div>
+    <app-top-nav [login_name]="current_user.login_name"></app-top-nav>
+    <!-- page content -->
+    <div class="right_col" role="main">
+      <router-outlet></router-outlet>
+    </div>
+    <!-- /page content -->
+    <app-footer></app-footer>
+  </div>
+</div>
+</body>

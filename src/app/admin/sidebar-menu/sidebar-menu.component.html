@@ -1,0 +1,32 @@
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>通用</h3>
+                <ul class="nav side-menu">
+                  <li><a (click)="anchorClicked($event)"><i class="fa fa-home"></i>用户中心<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li [routerLink]="['user/user-list']" [queryParams]="{ page: 1 }" routerLinkActive="current-page"><a>用户列表</a></li>
+                      <li routerLink="user/user-log" routerLinkActive="current-page"><a>验证日志</a></li>
+                    </ul>
+                  </li>
+                  <li><a (click)="anchorClicked($event)"><i class="fa fa-edit"></i>应用管理<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="form.html">应用列表</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+              <div class="menu_section">
+                <h3>高级</h3>
+                <ul class="nav side-menu">
+                  <li><a (click)="anchorClicked($event)"><i class="fa fa-bug"></i>配置中心<span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="e_commerce.html">系统配置</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="javascript:void(0)"><i class="fa fa-laptop"></i> Landing Page <span class="label label-success pull-right">Coming Soon</span></a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- /sidebar menu -->
+

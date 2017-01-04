@@ -1,0 +1,214 @@
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>用户列表</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_content">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <form class="navbar-form">
+                          <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#create_user_modal" style="margin: 0px;">
+                            创建用户
+                          </button>
+                          &nbsp;&nbsp;
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm" onclick="batch_enable()">激活</button>
+                            <button type="button" class="btn btn-default btn-sm" onclick="batch_disable()">禁用</button>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="col-sm-6">
+                        <form class="title_right form-inline">
+                          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <div class="input-group">
+                              <input #search_bar type="text" class="form-control" placeholder="Search for..." (keyup)="searchContent(search_bar.value)">
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                              </span>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div class="table-responsive">
+                      <table id="datatable" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                          <tr class="headings">
+                            <th>
+                              <input type="checkbox" id="check-all" class="flat">
+                            </th>
+                            <th class="column-title">#</th>
+                            <th class="column-title">用户名</th>
+                            <th class="column-title">手机号码</th>
+                            <th class="column-title">手机已校验</th>
+                            <th class="column-title">邮箱</th>
+                            <th class="column-title">邮箱已校验</th>
+                            <th class="column-title">激活状态</th>
+                            <th class="column-title">创建时间</th>
+                            <th class="column-title no-link last"><span class="nobr">操作</span>
+                            </th>
+                            <th class="bulk-actions" colspan="7">
+                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let user of users; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even pointer': isEven, 'even pointer': isOdd}">
+                            <td class="a-center ">
+                              <input type="checkbox" class="flat" name="table_records">
+                            </td>
+                            <td class="">{{user.id}}</td>
+                            <td class="">{{user.login_name}}</td>
+                            <td class="">{{user.mobile_phone}}</td>
+                            <td class="">
+                              <span class="fa fa-check-circle" style="color: #82c251;" *ngIf="user.mobile_phone_verified"></span>
+                              <span class="fa fa-ban" *ngIf="!user.mobile_phone_verified"></span>
+                              <!--<nput type="checkbox" disabled class="flat" [checked]="user.mobile_phone_verified">-->
+                            </td>
+                            <td class="">{{user.email}}</td>
+                            <td class="">
+                              <span class="fa fa-check-circle" style="color: #82c251;" *ngIf="user.email_verified"></span>
+                              <span class="fa fa-ban" *ngIf="!user.email_verified"></span>
+                              <!--<input type="checkbox" disabled class="flat" [checked]="user.email_verified">-->
+                            </td>
+                            <td class="">
+                              <span class="fa fa-check-circle" style="color: #82c251;" *ngIf="user.enabled"></span>
+                              <span class="fa fa-ban" *ngIf="!user.enabled"></span>
+                              <!--<input type="checkbox" class="flat" [checked]="user.enabled">-->
+                            </td>
+                            <td class="">{{user.create_time / 1000 | date: 'yyyy-MM-dd hh:mm'}}</td>
+                            <td class="last">
+                              <!--<button class="btn btn-info btn-xs">
+                                <i class="fa fa-pencil"></i>
+                                编辑
+                              </button>
+                              &nbsp;|&nbsp;&nbsp;
+                              <button class="btn btn-danger btn-xs">
+                                <i class="fa fa-trash"></i>
+                                删除
+                              </button>-->
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <form class="form-inline" style="margin-top: 20px; margin-bottom: 20px; margin-left: 60px">
+                          <label>每页&nbsp;&nbsp;</label>
+                          <select class="form-control input-sm" (change)="changePageSize($event.target.value)">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                          </select>
+                          <label>&nbsp;&nbsp;条</label>
+                        </form>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="dataTables_paginate paging_simple_numbers">
+                          <ul class="pagination" id="pagination">
+                            <li class="paginate_button" *ngIf="page > balanceOfPower">
+                              <a style="cursor: pointer" (click)="changePage(1)">首页</a>
+                            </li>
+                            <li class="paginate_button" *ngIf="page > 1">
+                              <a style="cursor: pointer" (click)="changePage(page - 1)">上一页</a>
+                            </li>
+                            <li *ngFor="let _page of pages;" class="paginate_button" [class.active]="_page == page">
+                              <a *ngIf="_page != endPagination || endPagination == lastPagination" [class.pointer]="_page != page" (click)="changePage(_page)">{{_page}}</a>
+                              <a *ngIf="_page == endPagination && endPagination != lastPagination" style="cursor: pointer" (click)="changePage(_page)">...</a>
+                            </li>
+                            <li class="paginate_button" *ngIf="page < lastPagination">
+                              <a style="cursor: pointer" (click)="changePage(page + 1)">下一页</a>
+                            </li>
+                            <li class="paginate_button" *ngIf="page < lastPagination - (balanceOfPower - 1) && lastPagination > pageWidth">
+                              <a style="cursor: pointer" (click)="changePage(lastPagination)">尾页</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="create_user_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="create_user_modal_label" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>添加新用户</h2>
+                    <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
+                      <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br>
+                    <form #signUpForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名
+                          <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="用户名" minlength="5" maxlength="30"
+                                 required name="login_name" [(ngModel)]="signUpLoginName">
+                          <div *ngIf="formErrors.login_name" class="alert alert-danger hint-board">
+                            {{ formErrors.login_name }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">登录密码
+                          <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="password" class="form-control" placeholder="***********************"
+                                 minlength="6" maxlength="100" required name="password" [(ngModel)]="signUpPassword">
+                          <div *ngIf="formErrors.password" class="alert alert-danger hint-board">
+                            {{ formErrors.password }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">绑定手机</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="tel" class="form-control" name="mobile_phone" placeholder="手机号码"
+                                 pattern="\d{11}" maxlength="11" [(ngModel)]="signUpMobilePhone">
+                          <div *ngIf="formErrors.mobile_phone" class="alert alert-danger hint-board">
+                            {{ formErrors.mobile_phone }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">绑定邮箱</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="email" class="form-control" placeholder="E-Mail" name="email"
+                                 pattern="^[a-z0-9]{1,20}([._][a-z0-9]{1,20}){0,5}@[a-z0-9]{1,20}([-][a-z0-9]{1,20}){0,2}\.[a-z]{1,5}$"
+                                 [(ngModel)]="signUpEMail">
+                          <div *ngIf="formErrors.email" class="alert alert-danger hint-board">
+                            {{ formErrors.email }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                          <button type="submit" class="btn btn-success" [disabled]="!signUpForm.form.valid">提交</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
