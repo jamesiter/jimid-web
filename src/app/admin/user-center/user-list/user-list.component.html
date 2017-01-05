@@ -51,13 +51,10 @@
                             <th class="column-title">创建时间</th>
                             <th class="column-title no-link last"><span class="nobr">操作</span>
                             </th>
-                            <th class="bulk-actions" colspan="7">
-                              <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                            </th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let user of users; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even pointer': isEven, 'even pointer': isOdd}">
+                          <tr *ngFor="let user of users; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
                             <td class="a-center ">
                               <input type="checkbox" class="flat" name="table_records">
                             </td>
@@ -65,19 +62,19 @@
                             <td class="">{{user.login_name}}</td>
                             <td class="">{{user.mobile_phone}}</td>
                             <td class="">
-                              <span class="fa fa-check-circle" style="color: #82c251;" *ngIf="user.mobile_phone_verified"></span>
-                              <span class="fa fa-ban" *ngIf="!user.mobile_phone_verified"></span>
+                              <span class="fa fa-circle" style="color: #82c251;" *ngIf="user.mobile_phone_verified"></span>
+                              <span class="fa fa-circle-o" *ngIf="!user.mobile_phone_verified"></span>
                             </td>
                             <td class="">{{user.email}}</td>
                             <td class="">
-                              <span class="fa fa-check-circle" style="color: #82c251;" *ngIf="user.email_verified"></span>
-                              <span class="fa fa-ban" *ngIf="!user.email_verified"></span>
+                              <span class="fa fa-circle" style="color: #82c251;" *ngIf="user.email_verified"></span>
+                              <span class="fa fa-circle-o" *ngIf="!user.email_verified"></span>
                             </td>
                             <td class="">
-                              <span class="fa fa-check-circle" style="color: #82c251;" *ngIf="user.enabled"></span>
-                              <span class="fa fa-ban" *ngIf="!user.enabled"></span>
+                              <span class="fa fa-circle" style="color: #82c251;" *ngIf="user.enabled"></span>
+                              <span class="fa fa-circle-o" *ngIf="!user.enabled"></span>
                             </td>
-                            <td class="">{{user.create_time / 1000 | date: 'yyyy-MM-dd hh:mm'}}</td>
+                            <td class="">{{user.create_time / 1000 | date: 'yyyy-MM-dd HH:mm'}}</td>
                             <td class="last">
                               <div class="dropdown inline-block">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -85,19 +82,29 @@
                                   <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
+                                  <li [ngClass]="{'disabled': user.enabled}">
+                                    <a href="javascript:;" (click)="enableUser(user.id)">
+                                      <span>启用</span>
+                                    </a>
+                                  </li>
+                                  <li [ngClass]="{'disabled': !user.enabled}">
+                                    <a href="javascript:;" (click)="disableUser(user.id)">
+                                      <span>禁用</span>
+                                    </a>
+                                  </li>
                                   <li class="">
-                                    <a href="javascript:;">
-                                      <span>停止</span>
+                                    <a href="javascript:;" (click)="showEditModal(user.id)">
+                                      <span>编辑</span>
                                     </a>
                                   </li>
                                   <li class="">
                                     <a href="javascript:;">
-                                      <span>重启</span>
+                                      <span>密码重置</span>
                                     </a>
                                   </li>
                                   <li class="">
                                     <a href="javascript:;">
-                                      <span>重置密码</span>
+                                      <span>删除</span>
                                     </a>
                                   </li>
                                 </ul>
@@ -223,3 +230,73 @@
             </div>
           </div>
 
+         <div class="modal fade" id="edit_user_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="edit_user_modal_label" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>编辑用户信息</h2>
+                    <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
+                      <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br>
+                    <form #updateUserForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="updateUser()">
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">用户ID
+                          <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="用户名" minlength="5" maxlength="30"
+                                 required name="id" [(ngModel)]="processingUser.id" disabled>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名
+                          <span class="required">*</span>
+                        </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="text" class="form-control" placeholder="用户名" minlength="5" maxlength="30"
+                                 required name="login_name" [(ngModel)]="processingUser.login_name">
+                          <div *ngIf="formErrors.login_name" class="alert alert-danger hint-board">
+                            {{ formErrors.login_name }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">绑定手机</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="tel" class="form-control" name="mobile_phone" placeholder="手机号码"
+                                 pattern="\d{11}" maxlength="11" [(ngModel)]="processingUser.mobile_phone">
+                          <div *ngIf="formErrors.mobile_phone" class="alert alert-danger hint-board">
+                            {{ formErrors.mobile_phone }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">绑定邮箱</label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                          <input type="email" class="form-control" placeholder="E-Mail" name="email"
+                                 pattern="^[a-z0-9]{1,20}([._][a-z0-9]{1,20}){0,5}@[a-z0-9]{1,20}([-][a-z0-9]{1,20}){0,2}\.[a-z]{1,5}$"
+                                 [(ngModel)]="processingUser.email">
+                          <div *ngIf="formErrors.email" class="alert alert-danger hint-board">
+                            {{ formErrors.email }}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                          <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                          <button type="submit" class="btn btn-success" [disabled]="!updateUserForm.form.valid">提交</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>

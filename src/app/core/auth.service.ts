@@ -34,8 +34,6 @@ export class AuthService {
   constructor(private http: Http, private gs: GlobalService, private router: Router) {}
 
   login(channel: string, password: string, login_name?: string, mobile_phone?: string, email?: string): Observable<Response> {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers, withCredentials: true });
     this.payload = {login_name, password, mobile_phone, email};
 
     if (channel == 'email') {
@@ -53,16 +51,16 @@ export class AuthService {
     }
     console.log(this.Url);
 
-    return this.http.post(this.Url, this.payload, options);
+    return this.http.post(this.Url, this.payload, this.gs.jsonHeadersWithCredentials);
   }
 
   auth(): Observable<Response>{
-    return this.http.get(this.gs.authURL, { withCredentials: true });
+    return this.http.get(this.gs.authURL, this.gs.jsonHeadersWithCredentials);
   }
 
   logout(): void {
     this.Url = this.gs.signOutURL;
-    let sc = this.http.get(this.Url, { withCredentials: true }).subscribe(
+    let sc = this.http.get(this.Url, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         if (req.status == 200) {
           this.isLoggedIn = false;

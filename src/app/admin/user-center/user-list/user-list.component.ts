@@ -4,7 +4,7 @@ import {Http, URLSearchParams, Headers, RequestOptions} from "@angular/http";
 import {GlobalService} from "../../../core/global.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Subscription, Subject} from "rxjs";
-import {NgForm} from "@angular/forms";
+import {NgForm, Form, FormGroup} from "@angular/forms";
 import any = jasmine.any;
 declare let $: any;
 
@@ -32,11 +32,15 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
   private searchContentStream = new Subject<string>();
 
   private signUpForm: NgForm;
-  @ViewChild("signUpForm") currentForm: NgForm;
+  @ViewChild("signUpForm") currentSignUpForm: NgForm;
   private signUpLoginName = '';
   private signUpPassword = '';
   private signUpMobilePhone = '';
   private signUpEMail = '';
+
+  private updateUserForm: NgForm;
+  @ViewChild("updateUserForm") currentUpdateUserForm: NgForm;
+  private processingUser = {};
 
   constructor(private http: Http, private gs: GlobalService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.subscription = this.activatedRoute.queryParams.subscribe(
@@ -161,6 +165,29 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
     )
   }
 
+  getProcessingUser(id) {
+    let url = this.gs.getUserURL + id.toString();
+    let sc = this.http.get(url, this.gs.jsonHeadersWithCredentials).subscribe(
+      (req) => {
+        if (req.status == 200) {
+          let data = req.json();
+          this.processingUser = data.data;
+          sc.unsubscribe();
+        }
+      },
+      (err) => {
+        console.log(err.toString());
+      },
+      () => {
+      }
+    )
+  }
+
+  showEditModal(id) {
+    this.getProcessingUser(id);
+    $('#edit_user_modal').modal('show');
+  }
+
   addUser() {
 
   }
@@ -171,6 +198,36 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
 
   updateUser() {
 
+  }
+
+  enableUser(id) {
+    let url = this.gs.enableUserURL + id.toString();
+    let sc = this.http.patch(url, {}, this.gs.jsonHeadersWithCredentials).subscribe(
+      (req) => {
+        sc.unsubscribe();
+        this.getUsers();
+      },
+      (err) => {
+        console.log(err.toString());
+      },
+      () => {
+      }
+    );
+  }
+
+  disableUser(id) {
+    let url = this.gs.disableUserURL + id.toString();
+    let sc = this.http.patch(url, {}, this.gs.jsonHeadersWithCredentials).subscribe(
+      (req) => {
+        sc.unsubscribe();
+        this.getUsers();
+      },
+      (err) => {
+        console.log(err.toString());
+      },
+      () => {
+      }
+    );
   }
 
   refresh() {
@@ -232,25 +289,39 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
   }
 
   ngAfterViewChecked() {
-    this.formChanged();
+    this.signUpFormChanged();
+    this.updateUserFormChanged();
   }
 
-  formChanged() {
-    if (this.currentForm === this.signUpForm) { return; }
-    this.signUpForm = this.currentForm;
+  signUpFormChanged() {
+    if (this.currentSignUpForm === this.signUpForm) { return; }
+    this.signUpForm = this.currentSignUpForm;
     if (this.signUpForm) {
       this.signUpForm.valueChanges.subscribe(
         (data) => {
-          this.onValueChanged(data);
+          if (!this.signUpForm) { return; }
+          const form = this.signUpForm.form;
+          this.onValueChanged(form, data);
         }
       );
     }
   }
 
-  onValueChanged(data?: any) {
-    if (!this.signUpForm) { return; }
-    const form = this.signUpForm.form;
+  updateUserFormChanged() {
+    if (this.currentUpdateUserForm === this.updateUserForm) { return; }
+    this.updateUserForm = this.currentUpdateUserForm;
+    if (this.updateUserForm) {
+      this.updateUserForm.valueChanges.subscribe(
+        (data) => {
+          if (!this.updateUserForm) { return; }
+          const form = this.updateUserForm.form;
+          this.onValueChanged(form, data);
+        }
+      );
+    }
+  }
 
+  onValueChanged(form: FormGroup, data?: any) {
     for (const field in this.formErrors) {
       this.formErrors[field] = '';
       const control = form.get(field);
@@ -291,14 +362,12 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
   };
 
   onSubmit() {
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers, withCredentials: true });
     let login_name = this.signUpLoginName;
     let password = this.signUpPassword;
     let mobile_phone = this.signUpMobilePhone;
     let email = this.signUpEMail;
     let payload = {login_name, password};
-    let sc = this.http.post(this.gs.signUpURL, payload, options).subscribe(
+    let sc = this.http.post(this.gs.signUpURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
         if (mobile_phone.length == 11 || email.length > 0) {
@@ -314,10 +383,10 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
             payload['email'] = email;
             payload['email_verified'] = true;
           }
-          let sc = this.http.patch(this.gs.updateUserURL, payload, options).subscribe(
+          let sc = this.http.patch(this.gs.updateUserURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
             (req) => {
               sc.unsubscribe();
-              window.location.reload();
+              this.getUsers();
             },
             (err) => {
               console.log(err);
@@ -326,9 +395,9 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
             }
           );
         } else {
-          window.location.reload();
+          this.getUsers();
         }
-        this.currentForm.reset();
+        this.currentSignUpForm.reset();
         $('#create_user_modal').modal('hide');
       },
       (err) => {

@@ -1,8 +1,12 @@
 import {Injectable} from '@angular/core';
+import {Headers, RequestOptions} from "@angular/http";
 
 @Injectable()
 export class GlobalService {
 
+
+  public jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
+  public jsonHeadersWithCredentials = new RequestOptions({ headers: this.jsonHeaders, withCredentials: true });
 
   public http = 'http://';
   public https = 'https://';
@@ -28,6 +32,12 @@ export class GlobalService {
   public updateUserURL = this.APIBaseURL + '/mgmt';
   // 批量更新用户信息
   public updateUsersURL = this.APIBaseURL + '/mgmts';
+
+  public enableUserURL = this.APIBaseURL + '/mgmt/_enable/';
+  public disableUserURL = this.APIBaseURL + '/mgmt/_disable/';
+
+  // 获取单个用户信息
+  public getUserURL = this.APIBaseURL + '/mgmt/';
 
   constructor() { }
 
