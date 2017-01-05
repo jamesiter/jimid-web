@@ -197,7 +197,41 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
   }
 
   updateUser() {
+    let id = this.processingUser['id'];
 
+    let payload = {id};
+    if (this.processingUser['login_name'].length > 0) {
+      payload['login_name'] = this.processingUser['login_name'];
+    }
+
+    if (this.processingUser['mobile_phone'].length == 11) {
+      payload['mobile_phone'] = this.processingUser['mobile_phone'];
+      payload['mobile_phone_verified'] = true;
+    } else {
+      payload['mobile_phone_verified'] = false;
+    }
+
+    if (this.processingUser['email'].length > 0) {
+      payload['email'] = this.processingUser['email'];
+      payload['email_verified'] = true;
+    } else {
+      payload['email_verified'] = false;
+    }
+
+    let sc = this.http.patch(this.gs.updateUserURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
+      (req) => {
+        sc.unsubscribe();
+        this.getUsers();
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+      }
+    );
+
+    this.currentUpdateUserForm.reset();
+    $('#edit_user_modal').modal('hide');
   }
 
   enableUser(id) {
