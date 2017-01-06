@@ -1,0 +1,73 @@
+<div class="modal fade" id="create_user_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="create_user_modal_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>添加新用户</h2>
+          <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
+            <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br>
+          <form #signUpForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" placeholder="用户名" minlength="5" maxlength="30"
+                       required name="login_name" [(ngModel)]="user.login_name">
+                <div *ngIf="formErrors.login_name" class="alert alert-danger hint-board">
+                  {{ formErrors.login_name }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">登录密码
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="password" class="form-control" placeholder="***********************"
+                       minlength="6" maxlength="100" required name="password" [(ngModel)]="user.password">
+                <div *ngIf="formErrors.password" class="alert alert-danger hint-board">
+                  {{ formErrors.password }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">绑定手机</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="tel" class="form-control" name="mobile_phone" placeholder="手机号码"
+                       pattern="\d{11}" maxlength="11" [(ngModel)]="user.mobile_phone">
+                <div *ngIf="formErrors.mobile_phone" class="alert alert-danger hint-board">
+                  {{ formErrors.mobile_phone }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">绑定邮箱</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="email" class="form-control" placeholder="E-Mail" name="email"
+                       pattern="^[a-z0-9]{1,20}([._][a-z0-9]{1,20}){0,5}@[a-z0-9]{1,20}([-][a-z0-9]{1,20}){0,2}\.[a-z]{1,5}$"
+                       [(ngModel)]="user.email">
+                <div *ngIf="formErrors.email" class="alert alert-danger hint-board">
+                  {{ formErrors.email }}
+                </div>
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-success" [disabled]="!signUpForm.form.valid">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

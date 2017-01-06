@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, OnDestroy, ViewChild, AfterViewChecked} from '@angular/core';
+import {Component, OnInit, AfterViewInit, OnDestroy, ViewChild, AfterViewChecked, NgModule} from '@angular/core';
 
 import {Http, URLSearchParams, Headers, RequestOptions} from "@angular/http";
 import {GlobalService} from "../../../core/global.service";
@@ -11,7 +11,8 @@ declare let $: any;
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
+
 })
 export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, AfterViewChecked {
 
@@ -33,10 +34,6 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
 
   private signUpForm: NgForm;
   @ViewChild("signUpForm") currentSignUpForm: NgForm;
-  private signUpLoginName = '';
-  private signUpPassword = '';
-  private signUpMobilePhone = '';
-  private signUpEMail = '';
 
   private updateUserForm: NgForm;
   @ViewChild("updateUserForm") currentUpdateUserForm: NgForm;
@@ -183,6 +180,9 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
     )
   }
 
+  showCreateModal() {
+  }
+
   showEditModal(id) {
     this.getProcessingUser(id);
     $('#edit_user_modal').modal('show');
@@ -323,22 +323,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
   }
 
   ngAfterViewChecked() {
-    this.signUpFormChanged();
     this.updateUserFormChanged();
-  }
-
-  signUpFormChanged() {
-    if (this.currentSignUpForm === this.signUpForm) { return; }
-    this.signUpForm = this.currentSignUpForm;
-    if (this.signUpForm) {
-      this.signUpForm.valueChanges.subscribe(
-        (data) => {
-          if (!this.signUpForm) { return; }
-          const form = this.signUpForm.form;
-          this.onValueChanged(form, data);
-        }
-      );
-    }
   }
 
   updateUserFormChanged() {
@@ -394,51 +379,4 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy, Afte
       'pattern': '请输入有效的E-Mail地址。'
     }
   };
-
-  onSubmit() {
-    let login_name = this.signUpLoginName;
-    let password = this.signUpPassword;
-    let mobile_phone = this.signUpMobilePhone;
-    let email = this.signUpEMail;
-    let payload = {login_name, password};
-    let sc = this.http.post(this.gs.signUpURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
-      (req) => {
-        sc.unsubscribe();
-        if (mobile_phone.length == 11 || email.length > 0) {
-          let body = req.json();
-          let id = body['data']['id'];
-
-          let payload = {id};
-          if (mobile_phone.length == 11) {
-            payload['mobile_phone'] = mobile_phone;
-            payload['mobile_phone_verified'] = true;
-          }
-          if (email.length > 0) {
-            payload['email'] = email;
-            payload['email_verified'] = true;
-          }
-          let sc = this.http.patch(this.gs.updateUserURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
-            (req) => {
-              sc.unsubscribe();
-              this.getUsers();
-            },
-            (err) => {
-              console.log(err);
-            },
-            () => {
-            }
-          );
-        } else {
-          this.getUsers();
-        }
-        this.currentSignUpForm.reset();
-        $('#create_user_modal').modal('hide');
-      },
-      (err) => {
-        console.log(err);
-      },
-      () => {
-      }
-    );
-  }
 }

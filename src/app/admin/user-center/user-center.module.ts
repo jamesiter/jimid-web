@@ -4,13 +4,14 @@ import { UserCenterComponent } from './user-center.component';
 import {UserListComponent} from "./user-list/user-list.component";
 import {UserLogComponent} from "./user-log/user-log.component";
 import {FormsModule} from "@angular/forms";
+import {CreateUserComponent} from "./user-list/create-user/create-user.component";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule
   ],
-  declarations: [ UserCenterComponent, UserListComponent, UserLogComponent ]
+  declarations: [ UserCenterComponent, UserListComponent, UserLogComponent, CreateUserComponent ]
 })
 
 export class UserCenterModule { }
