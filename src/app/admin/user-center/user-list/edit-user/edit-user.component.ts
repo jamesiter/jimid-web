@@ -27,10 +27,8 @@ export class EditUserComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
   }
 
-  show(id: number) {
-    if (id) {
-      this.getUser(id);
-    }
+  show(user: User) {
+    this.user = user;
     $('#edit_user_modal').modal('show');
   }
 
@@ -95,24 +93,6 @@ export class EditUserComponent implements OnInit, AfterViewChecked {
       'pattern': '请输入有效的E-Mail地址。'
     }
   };
-
-  getUser(id) {
-    let url = this.gs.getUserURL + id.toString();
-    let sc = this.http.get(url, this.gs.jsonHeadersWithCredentials).subscribe(
-      (req) => {
-        if (req.status == 200) {
-          let data = req.json();
-          this.user = data.data;
-          sc.unsubscribe();
-        }
-      },
-      (err) => {
-        console.log(err.toString());
-      },
-      () => {
-      }
-    )
-  }
 
   onSubmit() {
     let id = this.user.id;
