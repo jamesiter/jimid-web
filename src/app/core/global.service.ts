@@ -38,6 +38,8 @@ export class GlobalService {
 
   // 获取单个用户信息
   public getUserURL = this.APIBaseURL + '/mgmt/';
+  // 删除单个用户信息
+  public deleteUserURL = this.APIBaseURL + '/mgmt/';
 
   constructor() { }
 

@@ -6,6 +6,7 @@ import {UserLogComponent} from "./user-log/user-log.component";
 import {FormsModule} from "@angular/forms";
 import {CreateUserComponent} from "./user-list/create-user/create-user.component";
 import {EditUserComponent} from "./user-list/edit-user/edit-user.component";
+import {DeleteUserComponent} from "./user-list/delete-user/delete-user.component";
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import {EditUserComponent} from "./user-list/edit-user/edit-user.component";
   ],
   declarations: [
     UserCenterComponent,
-    UserListComponent, CreateUserComponent, EditUserComponent,
+    UserListComponent, CreateUserComponent, EditUserComponent, DeleteUserComponent,
     UserLogComponent
   ]
 })

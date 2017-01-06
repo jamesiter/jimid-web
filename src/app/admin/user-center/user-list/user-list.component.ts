@@ -1,10 +1,9 @@
 import {Component, OnInit, AfterViewInit, OnDestroy, ViewChild, AfterViewChecked, NgModule} from '@angular/core';
 
-import {Http, URLSearchParams, Headers, RequestOptions} from "@angular/http";
+import {Http, URLSearchParams} from "@angular/http";
 import {GlobalService} from "../../../core/global.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {Subscription, Subject} from "rxjs";
-import {NgForm, Form, FormGroup} from "@angular/forms";
 import any = jasmine.any;
 declare let $: any;
 
@@ -31,10 +30,6 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscription: Subscription;
   private subscriptionBySearch: Subscription;
   private searchContentStream = new Subject<string>();
-
-  private updateUserForm: NgForm;
-  @ViewChild("updateUserForm") currentUpdateUserForm: NgForm;
-  private processingUser = {};
 
   constructor(private http: Http, private gs: GlobalService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.subscription = this.activatedRoute.queryParams.subscribe(
@@ -159,16 +154,9 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     )
   }
 
-
-  addUser() {
-
-  }
-
   deleteUsers() {
 
   }
-
-
 
   enableUser(id) {
     let url = this.gs.enableUserURL + id.toString();

@@ -103,7 +103,7 @@
                                     </a>
                                   </li>
                                   <li class="">
-                                    <a href="javascript:;">
+                                    <a href="javascript:;" (click)="delete_user.show(user)">
                                       <span>删除</span>
                                     </a>
                                   </li>
@@ -158,4 +158,5 @@
 
           <app-create-user #create_user (completed)="getUsers();"></app-create-user>
           <app-edit-user #edit_user (completed)="getUsers();"></app-edit-user>
+          <app-delete-user #delete_user (completed)="getUsers();"></app-delete-user>
 
