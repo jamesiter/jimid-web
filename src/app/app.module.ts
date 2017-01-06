@@ -10,7 +10,6 @@ import {AuthGuard} from "./core/auth-guard.service";
 import { LoginComponent } from './login/login.component';
 import {AdminModule} from "./admin/admin.module";
 import {GlobalService} from "./core/global.service";
-import { CreateUserComponent } from './admin/user-center/user-list/create-user/create-user.component';
 
 @NgModule({
   declarations: [
