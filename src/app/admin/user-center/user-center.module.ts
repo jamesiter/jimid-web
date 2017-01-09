@@ -7,6 +7,7 @@ import {FormsModule} from "@angular/forms";
 import {CreateUserComponent} from "./user-list/create-user/create-user.component";
 import {EditUserComponent} from "./user-list/edit-user/edit-user.component";
 import {DeleteUserComponent} from "./user-list/delete-user/delete-user.component";
+import {ResetPasswordComponent} from "./user-list/reset-password/reset-password.component";
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import {DeleteUserComponent} from "./user-list/delete-user/delete-user.component
   ],
   declarations: [
     UserCenterComponent,
-    UserListComponent, CreateUserComponent, EditUserComponent, DeleteUserComponent,
+    UserListComponent, CreateUserComponent, EditUserComponent, DeleteUserComponent, ResetPasswordComponent,
     UserLogComponent
   ]
 })

@@ -40,6 +40,8 @@ export class GlobalService {
   public getUserURL = this.APIBaseURL + '/mgmt/';
   // 删除单个用户信息
   public deleteUserURL = this.APIBaseURL + '/mgmt/';
+  // 更新单个用户密码
+  public resetPasswordURL = this.APIBaseURL + '/mgmt/_change_password';
 
   constructor() { }
 
