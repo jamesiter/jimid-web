@@ -39,9 +39,11 @@ export class DeleteUserComponent implements OnInit {
       (req) => {
         sc.unsubscribe();
         this.completed.emit();
+        this.gs.showingTopFlashMessageLoading();
       },
       (err) => {
         console.log(err);
+        this.gs.showingTopFlashMessageError();
       },
       () => {
       }

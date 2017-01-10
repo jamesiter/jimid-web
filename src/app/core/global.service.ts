@@ -45,6 +45,9 @@ export class GlobalService {
 
   public topFlashMessage = '';
   public topFlashMessageType = 'loading';
+  public topFlashSuccessMessage = '操作已经成功完成';
+  public topFlashLoadingMessage = '正在努力加载中';
+  public topFlashErrorMessage = '操作失败';
   public timer: number = 10;
   public topFlashMessageDuration = 3;
 
@@ -68,15 +71,15 @@ export class GlobalService {
     this.timer = time;
   }
 
-  public showingTopFlashMessageSuccess(message: string) {
+  public showingTopFlashMessageSuccess(message: string = this.topFlashSuccessMessage) {
     this.showingTopFlashMessage(message, 'success', this.topFlashMessageDuration);
   }
 
-  public showingTopFlashMessageLoading(message: string) {
+  public showingTopFlashMessageLoading(message: string = this.topFlashSuccessMessage) {
     this.showingTopFlashMessage(message, 'loading', this.topFlashMessageDuration);
   }
 
-  public showingTopFlashMessageError(message: string) {
+  public showingTopFlashMessageError(message: string = this.topFlashErrorMessage) {
     this.showingTopFlashMessage(message, 'error', this.topFlashMessageDuration);
   }
 }

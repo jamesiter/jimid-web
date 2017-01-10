@@ -154,8 +154,10 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     )
   }
 
-  deleteUsers() {
+  batchEnableUser() {
+  }
 
+  batchDisableUser() {
   }
 
   enableUser(id) {

@@ -120,9 +120,11 @@ export class EditUserComponent implements OnInit, AfterViewChecked {
       (req) => {
         sc.unsubscribe();
         this.completed.emit();
+        this.gs.showingTopFlashMessageLoading();
       },
       (err) => {
         console.log(err);
+        this.gs.showingTopFlashMessageError();
       },
       () => {
       }
