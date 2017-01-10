@@ -43,6 +43,40 @@ export class GlobalService {
   // 更新单个用户密码
   public resetPasswordURL = this.APIBaseURL + '/mgmt/_change_password';
 
-  constructor() { }
+  public topFlashMessage = '';
+  public topFlashMessageType = 'loading';
+  public timer: number = 10;
+  public topFlashMessageDuration = 3;
 
+  constructor() {
+    this.timerRun();
+  }
+
+  timerRun() {
+    setInterval(() => {
+        if (this.timer > 0) {
+          this.timer--;
+        }
+      },
+      1000
+    );
+  }
+
+  public showingTopFlashMessage(message: string, type: string, time: number) {
+    this.topFlashMessage = message;
+    this.topFlashMessageType = type;
+    this.timer = time;
+  }
+
+  public showingTopFlashMessageSuccess(message: string) {
+    this.showingTopFlashMessage(message, 'success', this.topFlashMessageDuration);
+  }
+
+  public showingTopFlashMessageLoading(message: string) {
+    this.showingTopFlashMessage(message, 'loading', this.topFlashMessageDuration);
+  }
+
+  public showingTopFlashMessageError(message: string) {
+    this.showingTopFlashMessage(message, 'error', this.topFlashMessageDuration);
+  }
 }

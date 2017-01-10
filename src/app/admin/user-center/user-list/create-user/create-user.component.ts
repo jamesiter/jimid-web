@@ -118,6 +118,7 @@ export class CreateUserComponent implements OnInit, AfterViewChecked {
           let sc = this.http.patch(this.gs.updateUserURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
             (req) => {
               sc.unsubscribe();
+              this.gs.showingTopFlashMessageLoading('用户新建成功。');
               this.completed.emit();
             },
             (err) => {
