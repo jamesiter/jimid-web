@@ -155,9 +155,45 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   batchEnableUser() {
+    let ids = [];
+    $("tbody tr").find('td input[type="checkbox"]:eq(0):checked').parent().next().each(function(i, ele) {
+      ids.push($(ele).text());
+    });
+
+    let sc = this.http.patch(this.gs.updateUsersURL, {'ids': ids.join(','), 'enabled': true}, this.gs.jsonHeadersWithCredentials).subscribe(
+      (req) => {
+        sc.unsubscribe();
+        this.gs.showingTopFlashMessageLoading();
+        this.getUsers();
+      },
+      (err) => {
+        console.log(err.toString());
+        this.gs.showingTopFlashMessageError();
+      },
+      () => {
+      }
+    );
   }
 
   batchDisableUser() {
+    let ids = [];
+    $("tbody tr").find('td input[type="checkbox"]:eq(0):checked').parent().next().each(function(i, ele) {
+      ids.push($(ele).text());
+    });
+
+    let sc = this.http.patch(this.gs.updateUsersURL, {'ids': ids.join(','), 'enabled': false}, this.gs.jsonHeadersWithCredentials).subscribe(
+      (req) => {
+        sc.unsubscribe();
+        this.gs.showingTopFlashMessageLoading();
+        this.getUsers();
+      },
+      (err) => {
+        console.log(err.toString());
+        this.gs.showingTopFlashMessageError();
+      },
+      () => {
+      }
+    );
   }
 
   enableUser(id) {
