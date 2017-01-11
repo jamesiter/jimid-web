@@ -43,7 +43,7 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li class="">
-                        <a href="javascript:;" (click)="delete_app.show(user)">
+                        <a href="javascript:;" (click)="delete_app_key.show(appKey)">
                           <span>删除</span>
                         </a>
                       </li>
@@ -61,3 +61,4 @@
 </div>
 
 <app-create-app-key #create_app_key (completed)="getAppKeys();"></app-create-app-key>
+<app-delete-app-key #delete_app_key (completed)="getAppKeys();"></app-delete-app-key>

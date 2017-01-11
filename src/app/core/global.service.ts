@@ -47,6 +47,8 @@ export class GlobalService {
   public searchAppKeysURL = this.APIBaseURL + '/app_keys/_search';
   // 创建AppKey
   public createAppKeyURL = this.APIBaseURL + '/app_key';
+  // 删除AppKey
+  public deleteAppKeyURL = this.APIBaseURL + '/app_key/';
 
   public topFlashMessage = '';
   public topFlashMessageType = 'loading';

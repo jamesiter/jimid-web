@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {AppManageComponent} from "./app-manage.component";
 import {AppKeyListComponent} from "./app-key-list/app-key-list.component";
 import {CreateAppKeyComponent} from "./app-key-list/create-app-key/create-app-key.component";
+import {DeleteAppKeyComponent} from "./app-key-list/delete-app-key/delete-app-key.component";
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import {CreateAppKeyComponent} from "./app-key-list/create-app-key/create-app-ke
   ],
   declarations: [
     AppManageComponent,
-    AppKeyListComponent, CreateAppKeyComponent
+    AppKeyListComponent, CreateAppKeyComponent, DeleteAppKeyComponent
   ]
 })
 

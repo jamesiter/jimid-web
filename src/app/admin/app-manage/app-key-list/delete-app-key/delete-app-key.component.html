@@ -1,9 +1,9 @@
-<div class="modal fade" id="create_app_key_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="create_app_key_modal_label" aria-hidden="true">
+<div class="modal fade" id="delete_app_key_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="delete_app_key_modal_label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="x_panel">
         <div class="x_title">
-          <h2>创建应用</h2>
+          <h2>删除应用</h2>
           <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
             <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
             </li>
@@ -12,24 +12,29 @@
         </div>
         <div class="x_content">
           <br>
-          <form #createAppKeyForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
+          <form #deleteAppKeyForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">AppKey ID
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="id" [(ngModel)]="appKey.id" disabled>
+              </div>
+            </div>
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12">备注
                 <span class="required">*</span>
               </label>
               <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="text" class="form-control" placeholder="备注" minlength="2" maxlength="30"
-                       required name="remark" [(ngModel)]="appKey.remark">
-                <div *ngIf="formErrors.remark" class="alert alert-danger hint-board">
-                  {{ formErrors.remark }}
-                </div>
+                <input type="text" class="form-control"
+                       name="login_name" [(ngModel)]="appKey.remark" disabled>
               </div>
             </div>
             <div class="ln_solid"></div>
             <div class="form-group">
               <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-success" [disabled]="!createAppKeyForm.form.valid">提交</button>
+                <button type="submit" class="btn btn-danger">删除</button>
               </div>
             </div>
           </form>
