@@ -32,16 +32,21 @@ export class GlobalService {
   public updateUserURL = this.APIBaseURL + '/mgmt';
   // 批量更新用户信息
   public updateUsersURL = this.APIBaseURL + '/mgmts';
-
+  // 激活指定用户
   public enableUserURL = this.APIBaseURL + '/mgmt/_enable/';
+  // 禁用指定用户
   public disableUserURL = this.APIBaseURL + '/mgmt/_disable/';
-
   // 获取单个用户信息
   public getUserURL = this.APIBaseURL + '/mgmt/';
   // 删除单个用户信息
   public deleteUserURL = this.APIBaseURL + '/mgmt/';
-  // 更新单个用户密码
+  // 更新指定用户密码
   public resetPasswordURL = this.APIBaseURL + '/mgmt/_change_password';
+
+  // 获取AppKey
+  public searchAppKeysURL = this.APIBaseURL + '/app_keys/_search';
+  // 创建AppKey
+  public createAppKeyURL = this.APIBaseURL + '/app_key';
 
   public topFlashMessage = '';
   public topFlashMessageType = 'loading';
