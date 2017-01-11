@@ -119,7 +119,7 @@ export class CreateUserComponent implements OnInit, AfterViewChecked {
             (req) => {
               sc.unsubscribe();
               this.completed.emit();
-              this.gs.showingTopFlashMessageLoading();
+              this.gs.showingTopFlashMessageSuccess();
             },
             (err) => {
               console.log(err.toString());
@@ -130,7 +130,7 @@ export class CreateUserComponent implements OnInit, AfterViewChecked {
           );
         } else {
           this.completed.emit();
-          this.gs.showingTopFlashMessageLoading();
+          this.gs.showingTopFlashMessageSuccess();
         }
         this.currentForm.reset();
         this.hide();

@@ -163,7 +163,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     let sc = this.http.patch(this.gs.updateUsersURL, {'ids': ids.join(','), 'enabled': true}, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
-        this.gs.showingTopFlashMessageLoading();
+        this.gs.showingTopFlashMessageSuccess();
         this.getUsers();
       },
       (err) => {
@@ -184,7 +184,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     let sc = this.http.patch(this.gs.updateUsersURL, {'ids': ids.join(','), 'enabled': false}, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
-        this.gs.showingTopFlashMessageLoading();
+        this.gs.showingTopFlashMessageSuccess();
         this.getUsers();
       },
       (err) => {

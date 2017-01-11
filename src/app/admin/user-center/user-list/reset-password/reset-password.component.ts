@@ -90,7 +90,7 @@ export class ResetPasswordComponent implements OnInit, AfterViewChecked {
       (req) => {
         sc.unsubscribe();
         this.completed.emit();
-        this.gs.showingTopFlashMessageLoading();
+        this.gs.showingTopFlashMessageSuccess();
       },
       (err) => {
         console.log(err);
