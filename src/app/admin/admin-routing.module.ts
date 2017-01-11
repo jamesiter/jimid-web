@@ -3,8 +3,8 @@ import {NgModule} from "@angular/core";
 import {AdminComponent} from "./admin.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {AuthGuard} from "../core/auth-guard.service";
-import {UserCenterComponent} from "./user-center/user-center.component";
 import {userCenterRoutes} from "./user-center/user-center-routing.module";
+import {appManageRoutes} from "./app-manage/app-manage-routing.module";
 /**
  * Created by James on 2016/12/14.
  */
@@ -17,6 +17,7 @@ const adminRoutes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'user', children: userCenterRoutes },
+      { path: 'app-manage', children: appManageRoutes },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [AuthGuard] },
     ]
   }

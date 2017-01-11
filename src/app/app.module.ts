@@ -10,11 +10,13 @@ import {AuthGuard} from "./core/auth-guard.service";
 import { LoginComponent } from './login/login.component';
 import {AdminModule} from "./admin/admin.module";
 import {GlobalService} from "./core/global.service";
+import { AppListComponent } from './admin/app-manage/app-list/app-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    AppListComponent,
   ],
   imports: [
     BrowserModule,

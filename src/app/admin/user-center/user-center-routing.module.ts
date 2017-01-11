@@ -1,8 +1,6 @@
-import {RouterModule, Routes} from "@angular/router";
-import {NgModule} from "@angular/core";
+import {Routes} from "@angular/router";
 import {UserLogComponent} from "./user-log/user-log.component";
 import {UserListComponent} from "./user-list/user-list.component";
-import {UserCenterComponent} from "./user-center.component";
 /**
  * Created by James on 2016/12/14.
  */

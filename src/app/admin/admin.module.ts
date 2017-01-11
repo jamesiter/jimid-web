@@ -8,11 +8,13 @@ import {FooterMenuComponent} from "./footer-menu/footer-menu.component";
 import {TopNavComponent} from "./top-nav/top-nav.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {UserCenterModule} from "./user-center/user-center.module";
+import {AppManageModule} from "./app-manage/app-manage.module";
 
 @NgModule({
   imports: [
     CommonModule,
     UserCenterModule,
+    AppManageModule,
     AdminRoutingModule
   ],
   declarations: [
