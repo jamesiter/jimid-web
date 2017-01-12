@@ -68,20 +68,21 @@ export class CreateAppKeyComponent implements OnInit, AfterViewChecked {
   }
 
   formErrors = {
-    'remark': ''
+    'name': ''
   };
 
   validationMessages = {
-    'remark': {
-      'required': '备注为必填字段。',
-      'minlength': '备注不得少于2个字符。',
-      'maxlength': '备注不得超30个字符。'
+    'name': {
+      'required': '应用名目为必填字段。',
+      'minlength': '应用名称不得少于2个字符。',
+      'maxlength': '应用名称不得超30个字符。'
     }
   };
 
   onSubmit() {
     let remark = this.appKey.remark;
-    let payload = {remark};
+    let name = this.appKey.name;
+    let payload = {remark, name};
     let sc = this.http.post(this.gs.createAppKeyURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();

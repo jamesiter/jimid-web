@@ -14,6 +14,14 @@
           <br>
           <form #deleteAppKeyForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
             <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">应用名称
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="name" [(ngModel)]="appKey.name" disabled>
+              </div>
+            </div>
+            <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12">AppKey ID
                 <span class="required">*</span>
               </label>

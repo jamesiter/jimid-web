@@ -14,15 +14,22 @@
           <br>
           <form #createAppKeyForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <label class="control-label col-md-3 col-sm-3 col-xs-12">备注
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">应用名称
                 <span class="required">*</span>
               </label>
               <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="text" class="form-control" placeholder="备注" minlength="2" maxlength="30"
-                       required name="remark" [(ngModel)]="appKey.remark">
-                <div *ngIf="formErrors.remark" class="alert alert-danger hint-board">
-                  {{ formErrors.remark }}
+                <input type="text" class="form-control" placeholder="应用名称" minlength="2" maxlength="30"
+                       required name="name" [(ngModel)]="appKey.name">
+                <div *ngIf="formErrors.name" class="alert alert-danger hint-board">
+                  {{ formErrors.name}}
                 </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">备注
+              </label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" placeholder="备注" name="remark" [(ngModel)]="appKey.remark">
               </div>
             </div>
             <div class="ln_solid"></div>

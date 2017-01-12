@@ -21,6 +21,7 @@
             <table id="datatable" class="table table-striped jambo_table bulk_action">
               <thead>
               <tr class="headings">
+                <th class="column-title">应用名称</th>
                 <th class="column-title">AppKey-ID</th>
                 <th class="column-title">AppKey-SECRET</th>
                 <th class="column-title">创建时间</th>
@@ -31,6 +32,7 @@
               </thead>
               <tbody>
               <tr *ngFor="let appKey of appKeys; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
+                <td class="">{{appKey.name}}</td>
                 <td class="">{{appKey.id}}</td>
                 <td class="">{{appKey.secret}}</td>
                 <td class="">{{appKey.create_time / 1000 | date: 'yyyy-MM-dd HH:mm'}}</td>
