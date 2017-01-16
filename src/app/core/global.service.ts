@@ -50,6 +50,10 @@ export class GlobalService {
   // 删除AppKey
   public deleteAppKeyURL = this.APIBaseURL + '/app_key/';
 
+  public searchOpenidsURL = this.APIBaseURL + '/openids_admin/_search';
+  public updateOpenidURL = this.APIBaseURL + '/openid_admin';
+  public deleteOpenidURL = this.APIBaseURL + '/openid_admin/';
+
   public topFlashMessage = '';
   public topFlashMessageType = 'loading';
   public topFlashSuccessMessage = '操作已经成功完成';

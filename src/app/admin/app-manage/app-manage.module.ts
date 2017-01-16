@@ -5,6 +5,9 @@ import {AppManageComponent} from "./app-manage.component";
 import {AppKeyListComponent} from "./app-key-list/app-key-list.component";
 import {CreateAppKeyComponent} from "./app-key-list/create-app-key/create-app-key.component";
 import {DeleteAppKeyComponent} from "./app-key-list/delete-app-key/delete-app-key.component";
+import {OpenidComponent} from "./openid/openid.component";
+import {EditOpenidComponent} from "./openid/edit-openid/edit-openid.component";
+import {DeleteOpenidComponent} from "./openid/delete-openid/delete-openid.component";
 
 @NgModule({
   imports: [
@@ -13,7 +16,8 @@ import {DeleteAppKeyComponent} from "./app-key-list/delete-app-key/delete-app-ke
   ],
   declarations: [
     AppManageComponent,
-    AppKeyListComponent, CreateAppKeyComponent, DeleteAppKeyComponent
+    AppKeyListComponent, CreateAppKeyComponent, DeleteAppKeyComponent,
+    OpenidComponent, EditOpenidComponent, DeleteOpenidComponent
   ]
 })
 

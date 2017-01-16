@@ -1,0 +1,116 @@
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>Openid列表</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_content">
+          <div class="row">
+            <div class="col-sm-6">
+              <form class="title_right form-inline">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input #search_bar type="text" class="form-control" placeholder="Search for..." (keyup)="searchContent(search_bar.value)">
+                    <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                              </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table id="datatable" class="table table-striped jambo_table bulk_action">
+              <thead>
+              <tr class="headings">
+                <th class="column-title">#</th>
+                <th class="column-title">用户名</th>
+                <th class="column-title">手机号码</th>
+                <th class="column-title">邮箱</th>
+                <th class="column-title">应用名称</th>
+                <th class="column-title">OpenID</th>
+                <th class="column-title">创建时间</th>
+                <th class="column-title no-link last"><span class="nobr">操作</span>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let openid of openids; let i = index; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
+                <td class="">{{i+1}}</td>
+                <td class="">{{openid.user.login_name}}</td>
+                <td class="">{{openid.user.mobile_phone}}</td>
+                <td class="">{{openid.user.email}}</td>
+                <td class="">{{openid.app_key.name}}</td>
+                <td class="">{{openid.openid}}</td>
+                <td class="">{{openid.user.create_time / 1000 | date: 'yyyy-MM-dd HH:mm'}}</td>
+                <td class="last">
+                  <div class="dropdown inline-block">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                      更多
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li class="">
+                        <a href="javascript:;" (click)="edit_openid.show(openid)">
+                          <span>编辑</span>
+                        </a>
+                      </li>
+                      <li class="">
+                        <a href="javascript:;" (click)="delete_openid.show(openid)">
+                          <span>删除</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <form class="form-inline" style="margin-top: 20px; margin-bottom: 20px; margin-left: 60px">
+                <label>每页&nbsp;&nbsp;</label>
+                <select class="form-control input-sm" (change)="changePageSize($event.target.value)">
+                  <option value="10">10</option>
+                  <option value="20">20</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+                <label>&nbsp;&nbsp;条</label>
+              </form>
+            </div>
+            <div class="col-sm-6">
+              <div class="dataTables_paginate paging_simple_numbers">
+                <ul class="pagination" id="pagination">
+                  <li class="paginate_button" *ngIf="page > balanceOfPower">
+                    <a style="cursor: pointer" (click)="changePage(1)">首页</a>
+                  </li>
+                  <li class="paginate_button" *ngIf="page > 1">
+                    <a style="cursor: pointer" (click)="changePage(page - 1)">上一页</a>
+                  </li>
+                  <li *ngFor="let _page of pages;" class="paginate_button" [class.active]="_page == page">
+                    <a *ngIf="_page != endPagination || endPagination == lastPagination" [class.pointer]="_page != page" (click)="changePage(_page)">{{_page}}</a>
+                    <a *ngIf="_page == endPagination && endPagination != lastPagination" style="cursor: pointer" (click)="changePage(_page)">...</a>
+                  </li>
+                  <li class="paginate_button" *ngIf="page < lastPagination">
+                    <a style="cursor: pointer" (click)="changePage(page + 1)">下一页</a>
+                  </li>
+                  <li class="paginate_button" *ngIf="page < lastPagination - (balanceOfPower - 1) && lastPagination > pageWidth">
+                    <a style="cursor: pointer" (click)="changePage(lastPagination)">尾页</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-edit-openid #edit_openid (completed)="getOpenids();"></app-edit-openid>
+<app-delete-openid #delete_openid></app-delete-openid>
