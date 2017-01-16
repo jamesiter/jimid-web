@@ -1,3 +1,52 @@
-<p>
-  delete-openid works!
-</p>
+<div class="modal fade" id="delete_openid_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="delete_openid_modal_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>删除OpenID</h2>
+          <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
+            <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br>
+          <form #deleteOpenidForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">用户ID</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="uid" [(ngModel)]="openid.uid" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">用户名</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="login_name" [(ngModel)]="openid.user.login_name" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">AppKey-ID</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="appid" [(ngModel)]="openid.appid" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">应用名称</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="app_name" [(ngModel)]="openid.app_key.name" disabled>
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-danger">删除</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
