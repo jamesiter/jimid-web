@@ -18,36 +18,6 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.gs.getSelfInfo();
   }
-/*
-  getSelfInfo(): Promise<Response> {
-    return this.http.get(this.gs.getSelfInfoURL, { withCredentials: true })
-      .toPromise()
-      .then(this.extractData.bind(this))
-      .catch(this.handleError);
-  }
-
-  private extractData(res: Response) {
-    if (res.status == 200) {
-      this.current_user = res.json().data || {};
-    }
-
-    return { };
-  }
-
-  private handleError (error: Response | any) {
-    // In a real world app, we might use a remote logging infrastructure
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return {};
-  }
-*/
   /*
   'vendors/bootstrap/dist/css/bootstrap.min.css',
   'vendors/font-awesome/css/font-awesome.min.css',
@@ -58,6 +28,5 @@ export class AdminComponent implements OnInit {
   'vendors/bootstrap-daterangepicker/daterangepicker.css',
   'assets/src/scss/custom.css',
   */
-
 }
 

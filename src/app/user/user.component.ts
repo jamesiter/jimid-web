@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Http} from "@angular/http";
 import {GlobalService} from "../core/global.service";
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: [
+    'assets/src/scss/custom.css',
+    './user.component.css',
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class UserComponent implements OnInit {
 
