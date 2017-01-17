@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Headers, RequestOptions} from "@angular/http";
+import {Headers, RequestOptions, Http} from "@angular/http";
 
 @Injectable()
 export class GlobalService {
 
+  public current_user: any = {};
 
   public jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
   public jsonHeadersWithCredentials = new RequestOptions({ headers: this.jsonHeaders, withCredentials: true });
@@ -64,7 +65,7 @@ export class GlobalService {
   public timer: number = 10;
   public topFlashMessageDuration = 3;
 
-  constructor() {
+  constructor(private _http: Http) {
     this.timerRun();
   }
 
@@ -94,5 +95,24 @@ export class GlobalService {
 
   public showingTopFlashMessageError(message: string = this.topFlashErrorMessage) {
     this.showingTopFlashMessage(message, 'error', this.topFlashMessageDuration);
+  }
+
+  getSelfInfo() {
+    let sc = this._http.get(this.getSelfInfoURL, this.jsonHeadersWithCredentials).subscribe(
+      (req) => {
+        if (req.status == 200) {
+          console.log('Get self info succeed!');
+          this.current_user = req.json().data || {};
+        }
+        sc.unsubscribe();
+      },
+      (err) => {
+        console.log('Get self info failed!');
+        console.log(err.toString());
+      },
+      () => {
+        console.log('Get self info complete!');
+      }
+    );
   }
 }

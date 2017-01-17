@@ -3,6 +3,8 @@ import {AuthService} from "../core/auth.service";
 import {Router, ActivatedRoute} from "@angular/router";
 import {LoginUser} from "./login-user";
 import {Observable} from "rxjs";
+import {Http} from "@angular/http";
+import {GlobalService} from "../core/global.service";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,7 @@ import {Observable} from "rxjs";
 export class LoginComponent implements OnInit, AfterViewInit {
   loginUser = new LoginUser();
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private http: Http, private gs: GlobalService, private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {

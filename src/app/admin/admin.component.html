@@ -16,7 +16,7 @@
           </div>
           <div class="profile_info">
             <span>Welcome,</span>
-            <h2>{{current_user.login_name}}</h2>
+            <h2>{{gs.current_user.login_name}}</h2>
           </div>
         </div>
         <!-- /menu profile quick info -->
@@ -25,7 +25,7 @@
         <app-footer-menu></app-footer-menu>
       </div>
     </div>
-    <app-top-nav [login_name]="current_user.login_name"></app-top-nav>
+    <app-top-nav [login_name]="gs.current_user.login_name"></app-top-nav>
     <!-- page content -->
     <div class="right_col" role="main">
       <router-outlet></router-outlet>

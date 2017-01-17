@@ -13,14 +13,12 @@ import {GlobalService} from "../core/global.service";
 })
 export class AdminComponent implements OnInit {
 
-  private current_user: any = {};
-
   constructor(private http: Http, private gs: GlobalService) { }
 
   ngOnInit() {
-    this.getSelfInfo();
+    this.gs.getSelfInfo();
   }
-
+/*
   getSelfInfo(): Promise<Response> {
     return this.http.get(this.gs.getSelfInfoURL, { withCredentials: true })
       .toPromise()
@@ -49,7 +47,7 @@ export class AdminComponent implements OnInit {
     console.error(errMsg);
     return {};
   }
-
+*/
   /*
   'vendors/bootstrap/dist/css/bootstrap.min.css',
   'vendors/font-awesome/css/font-awesome.min.css',
