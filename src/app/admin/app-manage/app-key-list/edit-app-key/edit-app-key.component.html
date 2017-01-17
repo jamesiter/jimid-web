@@ -1,0 +1,63 @@
+<div class="modal fade" id="edit_app_key_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="edit_app_key_modal_label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>编辑应用</h2>
+          <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
+            <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br>
+          <form #updateAppKeyForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">AppKey-ID</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="id" [(ngModel)]="appKey.id" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">应用名称</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="name" required minlength="2" maxlength="40"
+                       [(ngModel)]="appKey.name">
+              </div>
+              <div *ngIf="formErrors.name" class="alert alert-danger hint-board">
+                {{ formErrors.name}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">应用入口</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="home_page" minlength="10" [(ngModel)]="appKey.home_page">
+              </div>
+              <div *ngIf="formErrors.home_page" class="alert alert-danger hint-board">
+                {{ formErrors.home_page}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">备注</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="remark" minlength="0" maxlength="1024"
+                       [(ngModel)]="appKey.remark">
+              </div>
+              <div *ngIf="formErrors.remark" class="alert alert-danger hint-board">
+                {{ formErrors.remark}}
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-success" [disabled]="!updateAppKeyForm.form.valid">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

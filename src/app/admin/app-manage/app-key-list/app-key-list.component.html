@@ -25,6 +25,7 @@
                 <th class="column-title">AppKey-ID</th>
                 <th class="column-title">AppKey-Secret</th>
                 <th class="column-title">创建时间</th>
+                <th class="column-title">应用入口</th>
                 <th class="column-title">备注</th>
                 <th class="column-title no-link last"><span class="nobr">操作</span>
                 </th>
@@ -36,6 +37,7 @@
                 <td class="">{{appKey.id}}</td>
                 <td class="">{{appKey.secret}}</td>
                 <td class="">{{appKey.create_time / 1000 | date: 'yyyy-MM-dd HH:mm'}}</td>
+                <td class="">{{appKey.home_page}}</td>
                 <td class="">{{appKey.remark}}</td>
                 <td class="last">
                   <div class="dropdown inline-block">
@@ -44,6 +46,11 @@
                       <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
+                      <li class="">
+                        <a href="javascript:;" (click)="edit_app_key.show(appKey)">
+                          <span>编辑</span>
+                        </a>
+                      </li>
                       <li class="">
                         <a href="javascript:;" (click)="delete_app_key.show(appKey)">
                           <span>删除</span>
@@ -63,4 +70,5 @@
 </div>
 
 <app-create-app-key #create_app_key (completed)="getAppKeys();"></app-create-app-key>
+<app-edit-app-key #edit_app_key (completed)="getAppKeys();"></app-edit-app-key>
 <app-delete-app-key #delete_app_key (completed)="getAppKeys();"></app-delete-app-key>

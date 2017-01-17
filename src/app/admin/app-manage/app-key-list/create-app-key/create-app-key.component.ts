@@ -80,9 +80,11 @@ export class CreateAppKeyComponent implements OnInit, AfterViewChecked {
   };
 
   onSubmit() {
-    let remark = this.appKey.remark;
     let name = this.appKey.name;
-    let payload = {remark, name};
+    let home_page = this.appKey.home_page;
+    let remark = this.appKey.remark;
+
+    let payload = {name, home_page, remark};
     let sc = this.http.post(this.gs.createAppKeyURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();

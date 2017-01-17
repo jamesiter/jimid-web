@@ -47,6 +47,8 @@ export class GlobalService {
   public searchAppKeysURL = this.APIBaseURL + '/app_keys/_search';
   // 创建AppKey
   public createAppKeyURL = this.APIBaseURL + '/app_key';
+  // 更新AppKey
+  public updateAppKeyURL = this.APIBaseURL + '/app_key';
   // 删除AppKey
   public deleteAppKeyURL = this.APIBaseURL + '/app_key/';
 
@@ -55,7 +57,7 @@ export class GlobalService {
   public deleteOpenidURL = this.APIBaseURL + '/openid_admin/';
 
   public topFlashMessage = '';
-  public topFlashMessageType = 'loading';
+  public topFlashMessageType = 'success';
   public topFlashSuccessMessage = '操作已经成功完成';
   public topFlashLoadingMessage = '正在努力加载中';
   public topFlashErrorMessage = '操作失败';
