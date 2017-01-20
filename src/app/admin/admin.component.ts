@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Http, Response} from "@angular/http";
 import {GlobalService} from "../core/global.service";
+import {Observable, Observer} from "rxjs";
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +14,30 @@ import {GlobalService} from "../core/global.service";
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private http: Http, private gs: GlobalService) { }
+  private Observable: Observable<number>;
+  private sc;
+
+  constructor(private http: Http, private gs: GlobalService) {
+
+    this.Observable = Observable.create((observer: Observer<number>) => {
+      this.gs.roleObserver = observer;
+    });
+
+    this.sc = this.Observable.subscribe(
+      (next) => {
+        if (next != 1) {
+          this.gs.navigate('/user');
+        }
+        this.sc.unsubscribe();
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        this.sc.unsubscribe();
+      }
+    )
+  }
 
   ngOnInit() {
     this.gs.getSelfInfo();

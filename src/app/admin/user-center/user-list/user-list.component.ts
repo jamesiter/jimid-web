@@ -11,7 +11,6 @@ declare let $: any;
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css'],
-
 })
 export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
 
@@ -31,7 +30,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
   private subscriptionBySearch: Subscription;
   private searchContentStream = new Subject<string>();
 
-  constructor(private http: Http, private gs: GlobalService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private http: Http, private gs: GlobalService, private activatedRoute: ActivatedRoute) {
     this.subscription = this.activatedRoute.queryParams.subscribe(
       (queryParams) => {
         this.page = +queryParams['page'] || this.page;
@@ -62,7 +61,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
           if (this.keyword.length > 0) {
             params['keyword'] = this.keyword.toString();
           }
-          this.navigate(params);
+          this.gs.navigate('/admin/user/user-list', params);
         },
         (err) => {
           console.log(err);
@@ -234,7 +233,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
       params['keyword'] = this.keyword.toString();
     }
 
-    this.navigate(params);
+    this.gs.navigate('/admin/user/user-list', params);
   };
 
   changePage(thePage) {
@@ -248,10 +247,6 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.page = 1;
 
     this.refresh();
-  }
-
-  navigate(queryParams) {
-    this.router.navigate(['/admin/user/user-list'], {queryParams: queryParams});
   }
 
   refreshPageState() {

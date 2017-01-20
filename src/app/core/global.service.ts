@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Headers, RequestOptions, Http} from "@angular/http";
+import {Router, Params} from "@angular/router";
+import {Observer} from "rxjs";
 
 @Injectable()
 export class GlobalService {
 
+  public roleObserver: Observer<number>;
   public current_user: any = {};
 
   public jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
@@ -26,7 +29,10 @@ export class GlobalService {
   public signInByMobilePhoneURL = this.APIBaseURL + '/user/_sign_in_by_mobile_phone';
   public signInByEMailURL = this.APIBaseURL + '/user/_sign_in_by_email';
   public signOutURL = this.APIBaseURL + '/user/_sign_out';
+  // 获取用户所拥有的应用列表
+  public getSelfAppListURL = this.APIBaseURL + '/user/_app_list';
 
+  // 获取用户自己的用户信息
   public getSelfInfoURL = this.APIBaseURL + '/user';
   public searchUsersURL = this.APIBaseURL + '/mgmts/_search';
   // 更新单个用户信息
@@ -65,7 +71,7 @@ export class GlobalService {
   public timer: number = 10;
   public topFlashMessageDuration = 3;
 
-  constructor(private _http: Http) {
+  constructor(private _http: Http, private router: Router) {
     this.timerRun();
   }
 
@@ -103,6 +109,7 @@ export class GlobalService {
         if (req.status == 200) {
           console.log('Get self info succeed!');
           this.current_user = req.json().data || {};
+          this.roleObserver.next(this.current_user.manager);
         }
         sc.unsubscribe();
       },
@@ -114,5 +121,9 @@ export class GlobalService {
         console.log('Get self info complete!');
       }
     );
+  }
+
+  navigate(url, queryParams: Params = {}) {
+    this.router.navigate([url], {queryParams: queryParams});
   }
 }
