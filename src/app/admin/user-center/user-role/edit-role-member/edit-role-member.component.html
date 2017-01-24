@@ -1,0 +1,103 @@
+<div class="modal fade" id="edit_role_member_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="edit_role_member_modal_label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>角色成员</h2>
+          <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
+            <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>成员<small>该角色下的成员</small></h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>用户名</th>
+                    <th>手机号码</th>
+                    <th>邮箱</th>
+                    <th><span class="nobr">操作</span>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let user of role.users; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
+                    <th scope="row">{{user.id}}</th>
+                    <td>{{user.login_name}}</td>
+                    <td>{{user.mobile_phone}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                      <a href="javascript:;" (click)="deleteMember(user.id)">
+                        <span>删除</span>
+                      </a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>系统用户<small>不属于任何角色的成员</small></h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <div class="row">
+                  <div class="col-sm-6">
+                  </div>
+                  <div class="col-sm-6">
+                    <form class="title_right form-inline">
+                      <div class="form-group pull-right top_search">
+                        <div class="input-group">
+                          <input #search_bar type="text" class="form-control" placeholder="Search for..." (keyup)="searchContent(search_bar.value)">
+                          <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                              </span>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>用户名</th>
+                    <th>手机号码</th>
+                    <th>邮箱</th>
+                    <th><span class="nobr">操作</span>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let user of freeUsers; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
+                    <th scope="row">{{user.id}}</th>
+                    <td>{{user.login_name}}</td>
+                    <td>{{user.mobile_phone}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                      <a href="javascript:;" (click)="addMember(user.id)">
+                        <span>添加</span>
+                      </a>
+                  </td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,85 @@
+<div class="">
+  <div class="page-title">
+    <div class="title_left">
+      <h3>角色管理</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="x_panel">
+        <div class="x_content">
+          <div class="row">
+            <div class="col-sm-6">
+              <form class="navbar-form">
+                <button type="button" class="btn btn-success btn-sm" (click)="create_role.show();" style="margin: 0px;">
+                  创建角色
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table id="datatable" class="table table-striped jambo_table bulk_action">
+              <thead>
+              <tr class="headings">
+                <th class="column-title">#</th>
+                <th class="column-title">名称</th>
+                <th class="column-title">成员</th>
+                <th class="column-title">应用</th>
+                <th class="column-title">备注</th>
+                <th class="column-title no-link last"><span class="nobr">操作</span>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let role of roles; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
+                <td class="">{{role.id}}</td>
+                <td class="">{{role.name}}</td>
+                <td>
+                  <span class="tag" *ngFor="let user of role.users;">
+                    <span>{{user.login_name}}&nbsp;&nbsp;</span>
+                  </span>
+                </td>
+                <td>
+                  <span class="tag" *ngFor="let app of role.apps;">
+                    <span>{{app.name}}&nbsp;&nbsp;</span>
+                  </span>
+                </td>
+                <td class="">{{role.remark}}</td>
+                <td class="last">
+                  <div class="dropdown inline-block">
+                    <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
+                      更多
+                      <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li class="">
+                        <a href="javascript:;" (click)="edit_role.show(role)">
+                          <span>编辑</span>
+                        </a>
+                      </li>
+                      <li class="">
+                        <a href="javascript:;" (click)="edit_role_member.show(role)">
+                          <span>角色成员</span>
+                        </a>
+                      </li>
+                      <li class="">
+                        <a href="javascript:;" (click)="delete_user.show(role)">
+                          <span>删除</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-create-role #create_role (completed)="getRoles();"></app-create-role>
+<app-edit-role #edit_role (completed)="getRoles();"></app-edit-role>
+<app-edit-role-member #edit_role_member></app-edit-role-member>

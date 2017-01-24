@@ -1,0 +1,59 @@
+<div class="modal fade" id="edit_role_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="edit_role_modal_label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>编辑角色</h2>
+          <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
+            <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br>
+          <form #updateRoleForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">角色ID
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="id" [(ngModel)]="role.id" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">角色名称
+                <span class="required">*</span>
+              </label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" placeholder="角色名称" minlength="1" maxlength="30"
+                       required name="name" [(ngModel)]="role.name">
+                <div *ngIf="formErrors.name" class="alert alert-danger hint-board">
+                  {{ formErrors.name }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label col-md-3 col-sm-3 col-xs-12">备注</label>
+              <div class="col-md-9 col-sm-9 col-xs-12">
+                <input type="text" class="form-control" name="remark" placeholder="备注"
+                       maxlength="255" [(ngModel)]="role.remark">
+                <div *ngIf="formErrors.remark" class="alert alert-danger hint-board">
+                  {{ formErrors.remark }}
+                </div>
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="form-group">
+              <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-success" [disabled]="!updateRoleForm.form.valid">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

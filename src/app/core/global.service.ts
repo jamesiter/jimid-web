@@ -63,6 +63,25 @@ export class GlobalService {
   public updateOpenidURL = this.APIBaseURL + '/openid_admin';
   public deleteOpenidURL = this.APIBaseURL + '/openid_admin/';
 
+  // 获取角色及用户和应用的映射
+  public getRolesURL = this.APIBaseURL + '/roles';
+  // 创建角色
+  public createRoleURL = this.APIBaseURL + '/role';
+  // 更新角色
+  public updateRoleURL = this.APIBaseURL + '/role/';
+  // 删除角色
+  public deleteRoleURL = this.APIBaseURL + '/role/';
+  // 添加用户成员到角色
+  public addMemberToRoleURL = this.APIBaseURL + '/role/_add_user_to_role/';
+  // 从角色删除用户成员
+  public deleteMemberFromRoleURL = this.APIBaseURL + '/role/_delete_user_from_role/';
+  // 添加应用到角色
+  public addAppToRoleURL = this.APIBaseURL + '/role/_add_app_to_role/';
+  // 从角色删除应用
+  public deleteAppFromRoleURL = this.APIBaseURL + '/role/_delete_app_from_role/';
+  // 从不属于任何角色的用户中模糊查找
+  public searchRoleFreeUsersURL = this.APIBaseURL + '/roles/_search_with_free_users';
+
   public topFlashMessage = '';
   public topFlashMessageType = 'success';
   public topFlashSuccessMessage = '操作已经成功完成';

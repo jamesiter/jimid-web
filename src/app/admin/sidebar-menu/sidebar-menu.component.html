@@ -5,13 +5,14 @@
                 <ul class="nav side-menu">
                   <li><a (click)="anchorClicked($event)"><i class="fa fa-home"></i>用户中心<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li [routerLink]="['user/user-list']" [queryParams]="{ page: 1 }" routerLinkActive="current-page"><a>用户列表</a></li>
+                      <li [routerLink]="['user/user-list']" [queryParams]="{ page: 1 }" routerLinkActive="current-page"><a>用户管理</a></li>
                       <li [routerLink]="['user/user-log']" routerLinkActive="current-page"><a>验证日志</a></li>
+                      <li [routerLink]="['user/user-role']" routerLinkActive="current-page"><a>角色授权</a></li>
                     </ul>
                   </li>
-                  <li><a (click)="anchorClicked($event)"><i class="fa fa-edit"></i>应用管理<span class="fa fa-chevron-down"></span></a>
+                  <li><a (click)="anchorClicked($event)"><i class="fa fa-edit"></i>应用中心<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li [routerLink]="['app-manage/app-list']" [queryParams]="{ page: 1 }" routerLinkActive="current-page"><a>应用列表</a></li>
+                      <li [routerLink]="['app-manage/app-list']" [queryParams]="{ page: 1 }" routerLinkActive="current-page"><a>应用管理</a></li>
                       <li [routerLink]="['app-manage/openid']" [queryParams]="{ page: 1 }" routerLinkActive="current-page"><a>OpenID</a></li>
                     </ul>
                   </li>
