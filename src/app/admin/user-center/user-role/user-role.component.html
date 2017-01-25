@@ -21,12 +21,12 @@
             <table id="datatable" class="table table-striped jambo_table bulk_action">
               <thead>
               <tr class="headings">
-                <th class="column-title">#</th>
-                <th class="column-title">名称</th>
-                <th class="column-title">成员</th>
-                <th class="column-title">应用</th>
+                <th class="column-title" width="40px">#</th>
+                <th class="column-title" width="100px">名称</th>
+                <th class="column-title" width="400px">成员</th>
+                <th class="column-title" width="400px">应用</th>
                 <th class="column-title">备注</th>
-                <th class="column-title no-link last"><span class="nobr">操作</span>
+                <th class="column-title no-link last" width="100px"><span class="nobr">操作</span>
                 </th>
               </tr>
               </thead>
@@ -35,14 +35,10 @@
                 <td class="">{{role.id}}</td>
                 <td class="">{{role.name}}</td>
                 <td>
-                  <span class="tag" *ngFor="let user of role.users;">
-                    <span>{{user.login_name}}&nbsp;&nbsp;</span>
-                  </span>
+                  <span class="pure-tag-user" *ngFor="let user of role.users;">{{user.login_name}}</span>
                 </td>
                 <td>
-                  <span class="tag" *ngFor="let app of role.apps;">
-                    <span>{{app.name}}&nbsp;&nbsp;</span>
-                  </span>
+                  <span class="pure-tag-app" *ngFor="let app of role.apps;">{{app.name}}</span>
                 </td>
                 <td class="">{{role.remark}}</td>
                 <td class="last">

@@ -45,6 +45,8 @@ export class GlobalService {
   public disableUserURL = this.APIBaseURL + '/mgmt/_disable/';
   // 获取单个用户信息
   public getUserURL = this.APIBaseURL + '/mgmt/';
+  // 通过过滤获取相关用户信息
+  public getUsersURL = this.APIBaseURL + '/mgmts';
   // 删除单个用户信息
   public deleteUserURL = this.APIBaseURL + '/mgmt/';
   // 更新指定用户密码

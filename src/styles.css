@@ -10,3 +10,29 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+span.pure-tag-user {
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  display: block;
+  float: left;
+  padding: 0 10px 0 10px;
+  text-decoration: none;
+  background: #1ABB9C;
+  color: #F1F6F7;
+  font-weight: 500;
+  margin: 5px 6px 5px 0;
+  font-family: helvetica; }
+
+span.pure-tag-app {
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  display: block;
+  float: left;
+  padding: 0 10px 0 10px;
+  text-decoration: none;
+  background: #7e8eac;
+  color: #F1F6F7;
+  font-weight: 500;
+  margin: 5px 6px 5px 0;
+  font-family: helvetica; }

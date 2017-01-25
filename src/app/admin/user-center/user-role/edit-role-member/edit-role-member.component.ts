@@ -31,7 +31,6 @@ export class EditRoleMemberComponent implements OnInit {
   constructor(private http: Http, private gs: GlobalService) {
     this.subscriptionBySearch = this.searchContentStream
       .debounceTime(300)
-      .distinctUntilChanged()
       .do(
         (keyword: string) => {
           this.keyword = keyword;
@@ -44,6 +43,7 @@ export class EditRoleMemberComponent implements OnInit {
               if (req.status == 200) {
                 let data = req.json();
                 this.freeUsers = data.data;
+                this.refreshRoleUsers();
                 sc.unsubscribe();
               }
             },
@@ -65,16 +65,34 @@ export class EditRoleMemberComponent implements OnInit {
   ngOnInit() {
     this.params.set('page', this.page.toString());
     this.params.set('page_size', this.pageSize.toString());
-    this.getFreeUsers();
   }
 
   show(role: Role) {
     this.role = role;
     $('#edit_role_member_modal').modal('show');
+    this.getFreeUsers();
   }
 
   hide() {
     $('#edit_role_member_modal').modal('hide');
+  }
+
+  refreshRoleUsers() {
+    let url = this.gs.getUsersURL + '?filter=role_id:in:' + this.role.id.toString();
+    let sc = this.http.get(url, { withCredentials: true }).subscribe(
+      (req) => {
+        if (req.status == 200) {
+          let data = req.json();
+          this.role.users = data.data;
+          sc.unsubscribe();
+        }
+      },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+      }
+    )
   }
 
   addMember(uid) {
