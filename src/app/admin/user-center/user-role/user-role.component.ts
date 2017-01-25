@@ -1,9 +1,7 @@
-import {Component, OnInit, AfterViewInit, OnDestroy, ViewChild, AfterViewChecked, NgModule} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 
-import {Http, URLSearchParams} from "@angular/http";
+import {Http} from "@angular/http";
 import {GlobalService} from "../../../core/global.service";
-import {Router, ActivatedRoute} from "@angular/router";
-import {Subscription, Subject} from "rxjs";
 import any = jasmine.any;
 import {Role} from "./role";
 declare let $: any;
@@ -28,7 +26,7 @@ export class UserRoleComponent implements OnInit, AfterViewInit {
   }
 
   getRoles() {
-    let sc = this.http.get(this.gs.getRolesURL, { withCredentials: true }).subscribe(
+    let sc = this.http.get(this.gs.getUserRoleAppMappingURL, { withCredentials: true }).subscribe(
       (req) => {
         if (req.status == 200) {
           let data = req.json();

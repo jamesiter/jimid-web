@@ -65,8 +65,10 @@ export class GlobalService {
   public updateOpenidURL = this.APIBaseURL + '/openid_admin';
   public deleteOpenidURL = this.APIBaseURL + '/openid_admin/';
 
+  // 通过角色ID获取应用
+  public getAppByRoleIDURL = this.APIBaseURL + '/roles/_get_app_by_role_id/';
   // 获取角色及用户和应用的映射
-  public getRolesURL = this.APIBaseURL + '/roles';
+  public getUserRoleAppMappingURL = this.APIBaseURL + '/roles/_get_user_role_app_mapping';
   // 创建角色
   public createRoleURL = this.APIBaseURL + '/role';
   // 更新角色
@@ -83,6 +85,8 @@ export class GlobalService {
   public deleteAppFromRoleURL = this.APIBaseURL + '/role/_delete_app_from_role/';
   // 从不属于任何角色的用户中模糊查找
   public searchRoleFreeUsersURL = this.APIBaseURL + '/roles/_search_with_free_users';
+  // 获取不属于该角色的其它应用
+  public getRoleOtherAppsURL = this.APIBaseURL + '/app_keys';
 
   public topFlashMessage = '';
   public topFlashMessageType = 'success';

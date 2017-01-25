@@ -1,3 +1,75 @@
-<p>
-  edit-role-app works!
-</p>
+<div class="modal fade" id="edit_role_app_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="edit_role_app_modal_label" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="x_panel">
+        <div class="x_title">
+          <h2>角色应用</h2>
+          <ul class="nav navbar-right panel_toolbox" style="min-width: 10px;">
+            <li data-dismiss="modal"><a class="close-link"><i class="fa fa-close"></i></a>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+          <br>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>应用<small>该角色下的应用</small></h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table class="table">
+                  <thead>
+                  <tr>
+                    <th>应用名称</th>
+                    <th><span class="nobr">操作</span>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let app of role.apps; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
+                    <td>{{app.name}}</td>
+                    <td>
+                      <a href="javascript:;" (click)="deleteApp(app.id)">
+                        <span>删除</span>
+                      </a>
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>系统应用<small>可添加的应用</small></h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>应用名称</th>
+                    <th><span class="nobr">操作</span>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let app of otherApps; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
+                    <td>{{app.name}}</td>
+                    <td>
+                      <a href="javascript:;" (click)="addApp(app.id)">
+                        <span>添加</span>
+                      </a>
+                  </td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

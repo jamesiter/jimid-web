@@ -65,12 +65,12 @@ export class EditRoleMemberComponent implements OnInit {
   ngOnInit() {
     this.params.set('page', this.page.toString());
     this.params.set('page_size', this.pageSize.toString());
+    this.getFreeUsers();
   }
 
   show(role: Role) {
     this.role = role;
     $('#edit_role_member_modal').modal('show');
-    this.getFreeUsers();
   }
 
   hide() {
@@ -103,6 +103,7 @@ export class EditRoleMemberComponent implements OnInit {
         sc.unsubscribe();
         this.completed.emit();
         this.gs.showingTopFlashMessageSuccess();
+        this.getFreeUsers();
       },
       (err) => {
         console.log(err);
@@ -111,8 +112,6 @@ export class EditRoleMemberComponent implements OnInit {
       () => {
       }
     );
-
-    this.getFreeUsers();
   }
 
   deleteMember(uid) {
@@ -123,6 +122,7 @@ export class EditRoleMemberComponent implements OnInit {
         sc.unsubscribe();
         this.completed.emit();
         this.gs.showingTopFlashMessageSuccess();
+        this.getFreeUsers();
       },
       (err) => {
         console.log(err);
@@ -131,8 +131,6 @@ export class EditRoleMemberComponent implements OnInit {
       () => {
       }
     );
-
-    this.getFreeUsers();
   }
 
   searchContent(keyword) {

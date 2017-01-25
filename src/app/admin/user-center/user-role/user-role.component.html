@@ -59,6 +59,11 @@
                         </a>
                       </li>
                       <li class="">
+                        <a href="javascript:;" (click)="edit_role_app.show(role)">
+                          <span>角色应用</span>
+                        </a>
+                      </li>
+                      <li class="">
                         <a href="javascript:;" (click)="delete_user.show(role)">
                           <span>删除</span>
                         </a>
@@ -79,3 +84,4 @@
 <app-create-role #create_role (completed)="getRoles();"></app-create-role>
 <app-edit-role #edit_role (completed)="getRoles();"></app-edit-role>
 <app-edit-role-member #edit_role_member></app-edit-role-member>
+<app-edit-role-app #edit_role_app></app-edit-role-app>
