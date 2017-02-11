@@ -7,68 +7,26 @@
     <div class="animate form login_form">
       <section class="login_content">
         <form>
-          <h1>Login Form</h1>
+          <h1>登陆 JimID 系统</h1>
           <div>
-            <input type="text" class="form-control" name="login_name" [(ngModel)]="loginUser.login_name" placeholder="Username" required="" />
+            <input type="text" class="form-control" name="login_name" [(ngModel)]="loginUser.login_name" placeholder="用户名" required="" />
           </div>
           <div>
-            <input type="password" class="form-control" name="password" [(ngModel)]="loginUser.password" placeholder="Password" required="" />
+            <input type="password" class="form-control" name="password" [(ngModel)]="loginUser.password" placeholder="密码" required="" />
           </div>
           <div>
-            <a class="btn btn-default submit"
+            <a class="btn btn-default submit" style="width: 100%;"
                (click)="login()">登 录</a>
-            <a class="reset_pass" (click)="hello()">Lost your password?</a>
           </div>
 
           <div class="clearfix"></div>
 
           <div class="separator">
-            <p class="change_link">New to site?
-              <a href="#signup" class="to_register"> Create Account </a>
-            </p>
-
-            <div class="clearfix"></div>
-            <br />
-
             <div>
-              <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-              <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
-            </div>
-          </div>
-        </form>
-      </section>
-    </div>
-
-    <div id="register" class="animate form registration_form">
-      <section class="login_content">
-        <form>
-          <h1>Create Account</h1>
-          <div>
-            <input type="text" class="form-control" placeholder="Username" required="" />
-          </div>
-          <div>
-            <input type="email" class="form-control" placeholder="Email" required="" />
-          </div>
-          <div>
-            <input type="password" class="form-control" placeholder="Password" required="" />
-          </div>
-          <div>
-            <a class="btn btn-default submit" href="index.html">Submit</a>
-          </div>
-
-          <div class="clearfix"></div>
-
-          <div class="separator">
-            <p class="change_link">Already a member ?
-              <a href="#signin" class="to_register"> Log in </a>
-            </p>
-
-            <div class="clearfix"></div>
-            <br />
-
-            <div>
-              <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-              <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+              <p>
+                <img src="../../assets/images/JimID-Logo_160x73.jpg" width="60" height="27.3">
+              </p>
+              <p>©2017 All Rights Reserved. JimID!</p>
             </div>
           </div>
         </form>
