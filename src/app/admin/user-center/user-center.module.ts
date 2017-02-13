@@ -13,6 +13,7 @@ import {CreateRoleComponent} from "./user-role/create-role/create-role.component
 import {EditRoleComponent} from "./user-role/edit-role/edit-role.component";
 import {EditRoleMemberComponent} from "./user-role/edit-role-member/edit-role-member.component";
 import {EditRoleAppComponent} from "./user-role/edit-role-app/edit-role-app.component";
+import {DeleteRoleComponent} from "./user-role/delete-role/delete-role.component";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {EditRoleAppComponent} from "./user-role/edit-role-app/edit-role-app.comp
     UserCenterComponent,
     UserListComponent, CreateUserComponent, EditUserComponent, DeleteUserComponent, ResetPasswordComponent,
     UserLogComponent,
-    UserRoleComponent, CreateRoleComponent, EditRoleComponent, EditRoleMemberComponent, EditRoleAppComponent
+    UserRoleComponent, CreateRoleComponent, EditRoleComponent, EditRoleMemberComponent, EditRoleAppComponent,
+    DeleteRoleComponent
   ]
 })
 

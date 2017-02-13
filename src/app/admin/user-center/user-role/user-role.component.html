@@ -64,7 +64,7 @@
                         </a>
                       </li>
                       <li class="">
-                        <a href="javascript:;" (click)="delete_user.show(role)">
+                        <a href="javascript:;" (click)="delete_role.show(role)">
                           <span>删除</span>
                         </a>
                       </li>
@@ -85,3 +85,4 @@
 <app-edit-role #edit_role (completed)="getRoles();"></app-edit-role>
 <app-edit-role-member #edit_role_member></app-edit-role-member>
 <app-edit-role-app #edit_role_app></app-edit-role-app>
+<app-delete-role #delete_role (completed)="getRoles();"></app-delete-role>
