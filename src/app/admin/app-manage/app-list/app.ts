@@ -1,4 +1,4 @@
-export class AppKey {
+export class App {
   public id: string;
   public secret: string;
   public create_time: number;

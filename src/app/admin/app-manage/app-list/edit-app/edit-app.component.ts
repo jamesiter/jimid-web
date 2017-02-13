@@ -4,19 +4,19 @@ import {Http} from "@angular/http";
 import {GlobalService} from "../../../../core/global.service";
 
 import any = jasmine.any;
-import {AppKey} from "../app-key";
+import {App} from "../app";
 declare let $: any;
 
 
 @Component({
-  selector: 'app-edit-app-key',
-  templateUrl: './edit-app-key.component.html',
-  styleUrls: ['./edit-app-key.component.css']
+  selector: 'app-edit-app',
+  templateUrl: './edit-app.component.html',
+  styleUrls: ['./edit-app.component.css']
 })
-export class EditAppKeyComponent implements OnInit, AfterViewChecked {
-  public appKey: AppKey = new AppKey();
-  private updateAppKeyForm: NgForm;
-  @ViewChild("updateAppKeyForm") currentForm: NgForm;
+export class EditAppComponent implements OnInit, AfterViewChecked {
+  public app: App = new App();
+  private updateAppForm: NgForm;
+  @ViewChild("updateAppForm") currentForm: NgForm;
   @Output() completed = new EventEmitter();
 
   constructor(private http: Http, private gs: GlobalService) {
@@ -25,13 +25,13 @@ export class EditAppKeyComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
   }
 
-  show(appKey: AppKey) {
-    this.appKey= appKey;
-    $('#edit_app_key_modal').modal('show');
+  show(app: App) {
+    this.app= app;
+    $('#edit_app_modal').modal('show');
   }
 
   hide() {
-    $('#edit_app_key_modal').modal('hide');
+    $('#edit_app_modal').modal('hide');
   }
 
   ngAfterViewChecked() {
@@ -39,13 +39,13 @@ export class EditAppKeyComponent implements OnInit, AfterViewChecked {
   }
 
   FormChanged() {
-    if (this.currentForm === this.updateAppKeyForm) { return; }
-    this.updateAppKeyForm = this.currentForm;
-    if (this.updateAppKeyForm) {
-      this.updateAppKeyForm.valueChanges.subscribe(
+    if (this.currentForm === this.updateAppForm) { return; }
+    this.updateAppForm = this.currentForm;
+    if (this.updateAppForm) {
+      this.updateAppForm.valueChanges.subscribe(
         (data) => {
-          if (!this.updateAppKeyForm) { return; }
-          const form = this.updateAppKeyForm.form;
+          if (!this.updateAppForm) { return; }
+          const form = this.updateAppForm.form;
           this.onValueChanged(form, data);
         }
       );
@@ -91,14 +91,14 @@ export class EditAppKeyComponent implements OnInit, AfterViewChecked {
   };
 
   onSubmit() {
-    let id = this.appKey.id;
-    let name = this.appKey.name;
-    let home_page = this.appKey.home_page;
-    let remark = this.appKey.remark;
+    let id = this.app.id;
+    let name = this.app.name;
+    let home_page = this.app.home_page;
+    let remark = this.app.remark;
 
     let payload = {id, name, home_page, remark};
 
-    let sc = this.http.patch(this.gs.updateAppKeyURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
+    let sc = this.http.patch(this.gs.updateAppURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
         this.completed.emit();

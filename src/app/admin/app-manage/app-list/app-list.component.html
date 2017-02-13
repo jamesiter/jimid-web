@@ -11,7 +11,7 @@
           <div class="row">
             <div class="col-sm-6">
               <form class="navbar-form">
-                <button type="button" class="btn btn-success btn-sm" (click)="create_app_key.show();" style="margin: 0px;">
+                <button type="button" class="btn btn-success btn-sm" (click)="create_app.show();" style="margin: 0px;">
                   创建应用
                 </button>
               </form>
@@ -22,8 +22,8 @@
               <thead>
               <tr class="headings">
                 <th class="column-title">应用名称</th>
-                <th class="column-title">AppKey-ID</th>
-                <th class="column-title">AppKey-Secret</th>
+                <th class="column-title">App-ID</th>
+                <th class="column-title">App-Secret</th>
                 <th class="column-title">创建时间</th>
                 <th class="column-title">应用入口</th>
                 <th class="column-title">备注</th>
@@ -32,13 +32,13 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let appKey of appKeys; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
-                <td class="">{{appKey.name}}</td>
-                <td class="">{{appKey.id}}</td>
-                <td class="">{{appKey.secret}}</td>
-                <td class="">{{appKey.create_time / 1000 | date: 'yyyy-MM-dd HH:mm'}}</td>
-                <td class="">{{appKey.home_page}}</td>
-                <td class="">{{appKey.remark}}</td>
+              <tr *ngFor="let app of apps; let isLast = last; let isOdd = odd; let isEven = even;" [ngClass]="{'even': isEven, 'odd': isOdd}">
+                <td class="">{{app.name}}</td>
+                <td class="">{{app.id}}</td>
+                <td class="">{{app.secret}}</td>
+                <td class="">{{app.create_time / 1000 | date: 'yyyy-MM-dd HH:mm'}}</td>
+                <td class="">{{app.home_page}}</td>
+                <td class="">{{app.remark}}</td>
                 <td class="last">
                   <div class="dropdown inline-block">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
@@ -47,12 +47,12 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li class="">
-                        <a href="javascript:;" (click)="edit_app_key.show(appKey)">
+                        <a href="javascript:;" (click)="edit_app.show(app)">
                           <span>编辑</span>
                         </a>
                       </li>
                       <li class="">
-                        <a href="javascript:;" (click)="delete_app_key.show(appKey)">
+                        <a href="javascript:;" (click)="delete_app.show(app)">
                           <span>删除</span>
                         </a>
                       </li>
@@ -69,6 +69,6 @@
   </div>
 </div>
 
-<app-create-app-key #create_app_key (completed)="getAppKeys();"></app-create-app-key>
-<app-edit-app-key #edit_app_key (completed)="getAppKeys();"></app-edit-app-key>
-<app-delete-app-key #delete_app_key (completed)="getAppKeys();"></app-delete-app-key>
+<app-create-app #create_app (completed)="getApps();"></app-create-app>
+<app-edit-app #edit_app (completed)="getApps();"></app-edit-app>
+<app-delete-app #delete_app (completed)="getApps();"></app-delete-app>

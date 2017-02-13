@@ -1,16 +1,16 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
-import {AppKey} from "./app-key";
+import {App} from "./app";
 import {Http} from "@angular/http";
 import {GlobalService} from "../../../core/global.service";
 
 @Component({
   selector: 'app-app-list',
-  templateUrl: './app-key-list.component.html',
-  styleUrls: ['./app-key-list.component.css']
+  templateUrl: './app-list.component.html',
+  styleUrls: ['./app-list.component.css']
 })
-export class AppKeyListComponent implements OnInit, AfterViewInit {
+export class AppListComponent implements OnInit, AfterViewInit {
 
-  private appKeys: AppKey[] = [];
+  private apps: App[] = [];
 
   constructor(private http: Http, private gs: GlobalService) {
   }
@@ -19,15 +19,15 @@ export class AppKeyListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.getAppKeys();
+    this.getApps();
   }
 
-  getAppKeys() {
-    let sc = this.http.get(this.gs.searchAppKeysURL + '?order_by=create_time', { withCredentials: true }).subscribe(
+  getApps() {
+    let sc = this.http.get(this.gs.searchAppsURL + '?order_by=create_time', { withCredentials: true }).subscribe(
       (req) => {
         if (req.status == 200) {
           let data = req.json();
-          this.appKeys = data.data;
+          this.apps = data.data;
           sc.unsubscribe();
         }
       },

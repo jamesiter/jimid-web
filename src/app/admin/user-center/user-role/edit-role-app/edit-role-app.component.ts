@@ -4,7 +4,7 @@ import {GlobalService} from "../../../../core/global.service";
 
 import any = jasmine.any;
 import {Role} from "../role";
-import {AppKey} from "../../../app-manage/app-key-list/app-key";
+import {App} from "../../../app-manage/app-list/app";
 declare let $: any;
 
 @Component({
@@ -15,7 +15,7 @@ declare let $: any;
 export class EditRoleAppComponent implements OnInit {
 
   private role: Role = new Role();
-  private otherApps: AppKey[] = [];
+  private otherApps: App[] = [];
   private page: number = 1;
   private pageSize: number = 10;
 

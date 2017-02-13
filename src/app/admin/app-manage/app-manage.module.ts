@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from "@angular/forms";
 import {AppManageComponent} from "./app-manage.component";
-import {AppKeyListComponent} from "./app-key-list/app-key-list.component";
-import {CreateAppKeyComponent} from "./app-key-list/create-app-key/create-app-key.component";
-import {DeleteAppKeyComponent} from "./app-key-list/delete-app-key/delete-app-key.component";
+import {AppListComponent} from "./app-list/app-list.component";
+import {CreateAppComponent} from "./app-list/create-app/create-app.component";
+import {DeleteAppComponent} from "./app-list/delete-app/delete-app.component";
 import {OpenidComponent} from "./openid/openid.component";
 import {EditOpenidComponent} from "./openid/edit-openid/edit-openid.component";
 import {DeleteOpenidComponent} from "./openid/delete-openid/delete-openid.component";
-import {EditAppKeyComponent} from "./app-key-list/edit-app-key/edit-app-key.component";
+import {EditAppComponent} from "./app-list/edit-app/edit-app.component";
 
 @NgModule({
   imports: [
@@ -17,7 +17,7 @@ import {EditAppKeyComponent} from "./app-key-list/edit-app-key/edit-app-key.comp
   ],
   declarations: [
     AppManageComponent,
-    AppKeyListComponent, CreateAppKeyComponent, DeleteAppKeyComponent, EditAppKeyComponent,
+    AppListComponent, CreateAppComponent, DeleteAppComponent, EditAppComponent,
     OpenidComponent, EditOpenidComponent, DeleteOpenidComponent
   ]
 })

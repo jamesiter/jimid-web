@@ -1,5 +1,5 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
-import {AppKey} from "../app-key";
+import {App} from "../app";
 import {Http} from "@angular/http";
 import {GlobalService} from "../../../../core/global.service";
 
@@ -7,13 +7,13 @@ import any = jasmine.any;
 declare let $: any;
 
 @Component({
-  selector: 'app-delete-app-key',
-  templateUrl: './delete-app-key.component.html',
-  styleUrls: ['./delete-app-key.component.css']
+  selector: 'app-delete-app',
+  templateUrl: './delete-app.component.html',
+  styleUrls: ['./delete-app.component.css']
 })
-export class DeleteAppKeyComponent implements OnInit {
+export class DeleteAppComponent implements OnInit {
 
-  public appKey: AppKey = new AppKey();
+  public app: App = new App();
 
   @Output() completed = new EventEmitter();
 
@@ -23,17 +23,17 @@ export class DeleteAppKeyComponent implements OnInit {
   ngOnInit() {
   }
 
-  show(appKey: AppKey) {
-    this.appKey = appKey;
-    $('#delete_app_key_modal').modal('show');
+  show(app: App) {
+    this.app = app;
+    $('#delete_app_modal').modal('show');
   }
 
   hide() {
-    $('#delete_app_key_modal').modal('hide');
+    $('#delete_app_modal').modal('hide');
   }
 
   onSubmit() {
-    let url = this.gs.deleteAppKeyURL + this.appKey.id.toString();
+    let url = this.gs.deleteAppURL + this.app.id.toString();
 
     let sc = this.http.delete(url, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {

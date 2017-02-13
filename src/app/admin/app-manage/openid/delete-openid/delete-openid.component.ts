@@ -4,7 +4,7 @@ import {GlobalService} from "../../../../core/global.service";
 
 import any = jasmine.any;
 import {Openid} from "../openid";
-import {AppKey} from "../../app-key-list/app-key";
+import {App} from "../../app-list/app";
 import {User} from "../../../user-center/user-list/user";
 declare let $: any;
 
@@ -19,7 +19,7 @@ export class DeleteOpenidComponent implements OnInit {
   @Output() completed = new EventEmitter();
 
   constructor(private http: Http, private gs: GlobalService) {
-    this.openid.app_key = new AppKey();
+    this.openid.app_key = new App();
     this.openid.user = new User();
   }
 

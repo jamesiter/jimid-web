@@ -53,13 +53,13 @@ export class GlobalService {
   public resetPasswordURL = this.APIBaseURL + '/mgmt/_change_password';
 
   // 获取AppKey
-  public searchAppKeysURL = this.APIBaseURL + '/app_keys/_search';
+  public searchAppsURL = this.APIBaseURL + '/apps/_search';
   // 创建AppKey
-  public createAppKeyURL = this.APIBaseURL + '/app_key';
+  public createAppURL = this.APIBaseURL + '/app';
   // 更新AppKey
-  public updateAppKeyURL = this.APIBaseURL + '/app_key';
+  public updateAppURL = this.APIBaseURL + '/app';
   // 删除AppKey
-  public deleteAppKeyURL = this.APIBaseURL + '/app_key/';
+  public deleteAppURL = this.APIBaseURL + '/app/';
 
   public searchOpenidsURL = this.APIBaseURL + '/openids_admin/_search';
   public updateOpenidURL = this.APIBaseURL + '/openid_admin';
@@ -86,7 +86,7 @@ export class GlobalService {
   // 从不属于任何角色的用户中模糊查找
   public searchRoleFreeUsersURL = this.APIBaseURL + '/roles/_search_with_free_users';
   // 获取不属于该角色的其它应用
-  public getRoleOtherAppsURL = this.APIBaseURL + '/app_keys';
+  public getRoleOtherAppsURL = this.APIBaseURL + '/apps';
 
   public topFlashMessage = '';
   public topFlashMessageType = 'success';

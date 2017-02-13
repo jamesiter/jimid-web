@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EditAppKeyComponent } from './edit-app-key.component';
+import { DeleteAppComponent } from './delete-app.component';
 
-describe('EditAppKeyComponent', () => {
-  let component: EditAppKeyComponent;
-  let fixture: ComponentFixture<EditAppKeyComponent>;
+describe('DeleteAppComponent', () => {
+  let component: DeleteAppComponent;
+  let fixture: ComponentFixture<DeleteAppComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditAppKeyComponent ]
+      declarations: [ DeleteAppComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditAppKeyComponent);
+    fixture = TestBed.createComponent(DeleteAppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

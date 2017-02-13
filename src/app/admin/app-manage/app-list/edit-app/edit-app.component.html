@@ -16,14 +16,14 @@
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12">AppKey-ID</label>
               <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="text" class="form-control" name="id" [(ngModel)]="appKey.id" disabled>
+                <input type="text" class="form-control" name="id" [(ngModel)]="app.id" disabled>
               </div>
             </div>
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12">应用名称</label>
               <div class="col-md-9 col-sm-9 col-xs-12">
                 <input type="text" class="form-control" name="name" required minlength="2" maxlength="40"
-                       [(ngModel)]="appKey.name">
+                       [(ngModel)]="app.name">
               </div>
               <div *ngIf="formErrors.name" class="alert alert-danger hint-board">
                 {{ formErrors.name}}
@@ -32,7 +32,7 @@
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12">应用入口</label>
               <div class="col-md-9 col-sm-9 col-xs-12">
-                <input type="text" class="form-control" name="home_page" minlength="10" [(ngModel)]="appKey.home_page">
+                <input type="text" class="form-control" name="home_page" minlength="10" [(ngModel)]="app.home_page">
               </div>
               <div *ngIf="formErrors.home_page" class="alert alert-danger hint-board">
                 {{ formErrors.home_page}}
@@ -42,7 +42,7 @@
               <label class="control-label col-md-3 col-sm-3 col-xs-12">备注</label>
               <div class="col-md-9 col-sm-9 col-xs-12">
                 <input type="text" class="form-control" name="remark" minlength="0" maxlength="1024"
-                       [(ngModel)]="appKey.remark">
+                       [(ngModel)]="app.remark">
               </div>
               <div *ngIf="formErrors.remark" class="alert alert-danger hint-board">
                 {{ formErrors.remark}}

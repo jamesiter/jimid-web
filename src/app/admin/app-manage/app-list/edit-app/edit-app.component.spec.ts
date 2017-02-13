@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { CreateAppKeyComponent } from './create-app-key.component';
+import { EditAppComponent } from './edit-app.component';
 
-describe('CreateAppKeyComponent', () => {
-  let component: CreateAppKeyComponent;
-  let fixture: ComponentFixture<CreateAppKeyComponent>;
+describe('EditAppComponent', () => {
+  let component: EditAppComponent;
+  let fixture: ComponentFixture<EditAppComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateAppKeyComponent ]
+      declarations: [ EditAppComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateAppKeyComponent);
+    fixture = TestBed.createComponent(EditAppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

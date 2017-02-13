@@ -1,7 +1,7 @@
 import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {Http} from "@angular/http";
 import {GlobalService} from "../../core/global.service";
-import {AppKey} from "../../admin/app-manage/app-key-list/app-key";
+import {App} from "../../admin/app-manage/app-list/app";
 
 @Component({
   selector: 'app-app-nav',
@@ -9,7 +9,7 @@ import {AppKey} from "../../admin/app-manage/app-key-list/app-key";
   styleUrls: ['./app-nav.component.css']
 })
 export class AppNavComponent implements OnInit, AfterViewInit {
-  private appList: AppKey[] = [];
+  private appList: App[] = [];
 
   constructor(private http: Http, private gs: GlobalService) {
   }

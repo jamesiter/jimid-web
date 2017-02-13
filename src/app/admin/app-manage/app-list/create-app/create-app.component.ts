@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild, Output, EventEmitter, AfterViewChecked} from '@angular/core';
-import {AppKey} from "../app-key";
+import {App} from "../app";
 import {NgForm, FormGroup} from "@angular/forms";
 import {Http} from "@angular/http";
 import {GlobalService} from "../../../../core/global.service";
@@ -8,16 +8,16 @@ import any = jasmine.any;
 declare let $: any;
 
 @Component({
-  selector: 'app-create-app-key',
-  templateUrl: './create-app-key.component.html',
-  styleUrls: ['./create-app-key.component.css']
+  selector: 'app-create-app',
+  templateUrl: './create-app.component.html',
+  styleUrls: ['./create-app.component.css']
 })
-export class CreateAppKeyComponent implements OnInit, AfterViewChecked {
+export class CreateAppComponent implements OnInit, AfterViewChecked {
 
-  public appKey: AppKey = new AppKey();
+  public app: App = new App();
 
-  private createAppKeyForm: NgForm;
-  @ViewChild("createAppKeyForm") currentForm: NgForm;
+  private createAppForm: NgForm;
+  @ViewChild("createAppForm") currentForm: NgForm;
 
   @Output() completed = new EventEmitter();
 
@@ -32,21 +32,21 @@ export class CreateAppKeyComponent implements OnInit, AfterViewChecked {
   }
 
   show() {
-    $('#create_app_key_modal').modal('show');
+    $('#create_app_modal').modal('show');
   }
 
   hide() {
-    $('#create_app_key_modal').modal('hide');
+    $('#create_app_modal').modal('hide');
   }
 
   FormChanged() {
-    if (this.currentForm === this.createAppKeyForm) { return; }
-    this.createAppKeyForm = this.currentForm;
-    if (this.createAppKeyForm) {
-      this.createAppKeyForm.valueChanges.subscribe(
+    if (this.currentForm === this.createAppForm) { return; }
+    this.createAppForm = this.currentForm;
+    if (this.createAppForm) {
+      this.createAppForm.valueChanges.subscribe(
         (data) => {
-          if (!this.createAppKeyForm) { return; }
-          const form = this.createAppKeyForm.form;
+          if (!this.createAppForm) { return; }
+          const form = this.createAppForm.form;
           this.onValueChanged(form, data);
         }
       );
@@ -80,12 +80,12 @@ export class CreateAppKeyComponent implements OnInit, AfterViewChecked {
   };
 
   onSubmit() {
-    let name = this.appKey.name;
-    let home_page = this.appKey.home_page;
-    let remark = this.appKey.remark;
+    let name = this.app.name;
+    let home_page = this.app.home_page;
+    let remark = this.app.remark;
 
     let payload = {name, home_page, remark};
-    let sc = this.http.post(this.gs.createAppKeyURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
+    let sc = this.http.post(this.gs.createAppURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
         this.completed.emit();

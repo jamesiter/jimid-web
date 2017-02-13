@@ -6,7 +6,7 @@ import {GlobalService} from "../../../../core/global.service";
 import any = jasmine.any;
 import {Openid} from "../openid";
 import {User} from "../../../user-center/user-list/user";
-import {AppKey} from "../../app-key-list/app-key";
+import {App} from "../../app-list/app";
 declare let $: any;
 
 @Component({
@@ -22,7 +22,7 @@ export class EditOpenidComponent implements OnInit, AfterViewChecked {
 
   constructor(private http: Http, private gs: GlobalService) {
     this.openid.user = new User();
-    this.openid.app_key = new AppKey();
+    this.openid.app_key = new App();
   }
 
   ngOnInit() {
