@@ -104,9 +104,7 @@ export class CreateUserComponent implements OnInit, AfterViewChecked {
         sc.unsubscribe();
         if (mobile_phone.length == 11 || email.length > 0) {
           let body = req.json();
-          let id = body['data']['id'];
 
-          let payload = {id};
           if (mobile_phone.length == 11) {
             payload['mobile_phone'] = mobile_phone;
             payload['mobile_phone_verified'] = true;
@@ -115,7 +113,8 @@ export class CreateUserComponent implements OnInit, AfterViewChecked {
             payload['email'] = email;
             payload['email_verified'] = true;
           }
-          let sc = this.http.patch(this.gs.updateUserURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
+          let url = this.gs.updateUserURL + body['data']['id'];
+          let sc = this.http.patch(url, payload, this.gs.jsonHeadersWithCredentials).subscribe(
             (req) => {
               sc.unsubscribe();
               this.completed.emit();

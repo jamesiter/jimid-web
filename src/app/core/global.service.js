@@ -33,23 +33,23 @@ var GlobalService = (function () {
         this.getSelfAppListURL = this.APIBaseURL + '/user/_app_list';
         // 获取用户自己的用户信息
         this.getSelfInfoURL = this.APIBaseURL + '/user';
-        this.searchUsersURL = this.APIBaseURL + '/mgmts/_search';
+        this.searchUsersURL = this.APIBaseURL + '/users_mgmt/_search';
         // 更新单个用户信息
-        this.updateUserURL = this.APIBaseURL + '/mgmt';
+        this.updateUserURL = this.APIBaseURL + '/user_mgmt/';
         // 批量更新用户信息
-        this.updateUsersURL = this.APIBaseURL + '/mgmts';
+        this.updateUsersURL = this.APIBaseURL + '/users_mgmt';
         // 激活指定用户
-        this.enableUserURL = this.APIBaseURL + '/mgmt/_enable/';
+        this.enableUserURL = this.APIBaseURL + '/user_mgmt/_enable/';
         // 禁用指定用户
-        this.disableUserURL = this.APIBaseURL + '/mgmt/_disable/';
+        this.disableUserURL = this.APIBaseURL + '/user_mgmt/_disable/';
         // 获取单个用户信息
-        this.getUserURL = this.APIBaseURL + '/mgmt/';
+        this.getUserURL = this.APIBaseURL + '/user_mgmt/';
         // 通过过滤获取相关用户信息
-        this.getUsersURL = this.APIBaseURL + '/mgmts';
+        this.getUsersURL = this.APIBaseURL + '/users_mgmt';
         // 删除单个用户信息
-        this.deleteUserURL = this.APIBaseURL + '/mgmt/';
+        this.deleteUserURL = this.APIBaseURL + '/user_mgmt/';
         // 更新指定用户密码
-        this.resetPasswordURL = this.APIBaseURL + '/mgmt/_change_password';
+        this.resetPasswordURL = this.APIBaseURL + '/user_mgmt/_change_password/';
         // 获取AppKey
         this.searchAppsURL = this.APIBaseURL + '/apps/_search';
         // 创建AppKey

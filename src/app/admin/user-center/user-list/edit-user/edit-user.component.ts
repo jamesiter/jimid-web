@@ -95,9 +95,7 @@ export class EditUserComponent implements OnInit, AfterViewChecked {
   };
 
   onSubmit() {
-    let id = this.user.id;
-
-    let payload = {id};
+    let payload = {};
     if (this.user.login_name.length > 0) {
       payload['login_name'] = this.user.login_name;
     }
@@ -116,7 +114,9 @@ export class EditUserComponent implements OnInit, AfterViewChecked {
       payload['email_verified'] = false;
     }
 
-    let sc = this.http.patch(this.gs.updateUserURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
+    let url = this.gs.updateUserURL + this.user.id;
+
+    let sc = this.http.patch(url, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
         this.completed.emit();

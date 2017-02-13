@@ -81,12 +81,11 @@ export class ResetPasswordComponent implements OnInit, AfterViewChecked {
   };
 
   onSubmit() {
-    let id = this.user.id;
     let password = this.user.password;
+    let payload = {password};
 
-    let payload = {id, password};
-
-    let sc = this.http.patch(this.gs.resetPasswordURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
+    let url = this.gs.resetPasswordURL + this.user.id;
+    let sc = this.http.patch(url, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
         this.completed.emit();

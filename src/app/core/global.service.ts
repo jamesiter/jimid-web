@@ -34,23 +34,23 @@ export class GlobalService {
 
   // 获取用户自己的用户信息
   public getSelfInfoURL = this.APIBaseURL + '/user';
-  public searchUsersURL = this.APIBaseURL + '/mgmts/_search';
+  public searchUsersURL = this.APIBaseURL + '/users_mgmt/_search';
   // 更新单个用户信息
-  public updateUserURL = this.APIBaseURL + '/mgmt';
+  public updateUserURL = this.APIBaseURL + '/user_mgmt/';
   // 批量更新用户信息
-  public updateUsersURL = this.APIBaseURL + '/mgmts';
+  public updateUsersURL = this.APIBaseURL + '/users_mgmt';
   // 激活指定用户
-  public enableUserURL = this.APIBaseURL + '/mgmt/_enable/';
+  public enableUserURL = this.APIBaseURL + '/user_mgmt/_enable/';
   // 禁用指定用户
-  public disableUserURL = this.APIBaseURL + '/mgmt/_disable/';
+  public disableUserURL = this.APIBaseURL + '/user_mgmt/_disable/';
   // 获取单个用户信息
-  public getUserURL = this.APIBaseURL + '/mgmt/';
+  public getUserURL = this.APIBaseURL + '/user_mgmt/';
   // 通过过滤获取相关用户信息
-  public getUsersURL = this.APIBaseURL + '/mgmts';
+  public getUsersURL = this.APIBaseURL + '/users_mgmt';
   // 删除单个用户信息
-  public deleteUserURL = this.APIBaseURL + '/mgmt/';
+  public deleteUserURL = this.APIBaseURL + '/user_mgmt/';
   // 更新指定用户密码
-  public resetPasswordURL = this.APIBaseURL + '/mgmt/_change_password';
+  public resetPasswordURL = this.APIBaseURL + '/user_mgmt/_change_password/';
 
   // 获取AppKey
   public searchAppsURL = this.APIBaseURL + '/apps/_search';
