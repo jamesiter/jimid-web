@@ -19,7 +19,7 @@ export class DeleteOpenidComponent implements OnInit {
   @Output() completed = new EventEmitter();
 
   constructor(private http: Http, private gs: GlobalService) {
-    this.openid.app_key = new App();
+    this.openid.app = new App();
     this.openid.user = new User();
   }
 

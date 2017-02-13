@@ -59,7 +59,7 @@ var GlobalService = (function () {
         // 删除App
         this.deleteAppURL = this.APIBaseURL + '/app/';
         this.searchOpenidsURL = this.APIBaseURL + '/openids_admin/_search';
-        this.updateOpenidURL = this.APIBaseURL + '/openid_admin';
+        this.updateOpenidURL = this.APIBaseURL + '/openid_admin/';
         this.deleteOpenidURL = this.APIBaseURL + '/openid_admin/';
         // 通过角色ID获取应用
         this.getAppByRoleIDURL = this.APIBaseURL + '/roles/_get_app_by_role_id/';

@@ -22,7 +22,7 @@ export class EditOpenidComponent implements OnInit, AfterViewChecked {
 
   constructor(private http: Http, private gs: GlobalService) {
     this.openid.user = new User();
-    this.openid.app_key = new App();
+    this.openid.app = new App();
   }
 
   ngOnInit() {
@@ -82,13 +82,11 @@ export class EditOpenidComponent implements OnInit, AfterViewChecked {
   };
 
   onSubmit() {
-    let uid = this.openid.uid;
-    let appid = this.openid.appid;
     let openid = this.openid.openid;
+    let payload = {openid};
+    let url = this.gs.updateOpenidURL + this.openid.appid + '/' + this.openid.uid;
 
-    let payload = {uid, appid, openid};
-
-    let sc = this.http.patch(this.gs.updateOpenidURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
+    let sc = this.http.patch(url, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
         this.completed.emit();

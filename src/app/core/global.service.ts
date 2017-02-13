@@ -62,7 +62,7 @@ export class GlobalService {
   public deleteAppURL = this.APIBaseURL + '/app/';
 
   public searchOpenidsURL = this.APIBaseURL + '/openids_admin/_search';
-  public updateOpenidURL = this.APIBaseURL + '/openid_admin';
+  public updateOpenidURL = this.APIBaseURL + '/openid_admin/';
   public deleteOpenidURL = this.APIBaseURL + '/openid_admin/';
 
   // 通过角色ID获取应用

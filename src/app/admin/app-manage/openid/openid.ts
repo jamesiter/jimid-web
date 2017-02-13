@@ -6,5 +6,5 @@ export class Openid {
   public openid: string;
   public create_time: number;
   public user: User;
-  public app_key: App;
+  public app: App;
 }
