@@ -50,13 +50,13 @@ var GlobalService = (function () {
         this.deleteUserURL = this.APIBaseURL + '/user_mgmt/';
         // 更新指定用户密码
         this.resetPasswordURL = this.APIBaseURL + '/user_mgmt/_change_password/';
-        // 获取AppKey
+        // 获取App
         this.searchAppsURL = this.APIBaseURL + '/apps/_search';
-        // 创建AppKey
+        // 创建App
         this.createAppURL = this.APIBaseURL + '/app';
-        // 更新AppKey
-        this.updateAppURL = this.APIBaseURL + '/app';
-        // 删除AppKey
+        // 更新App
+        this.updateAppURL = this.APIBaseURL + '/app/';
+        // 删除App
         this.deleteAppURL = this.APIBaseURL + '/app/';
         this.searchOpenidsURL = this.APIBaseURL + '/openids_admin/_search';
         this.updateOpenidURL = this.APIBaseURL + '/openid_admin';

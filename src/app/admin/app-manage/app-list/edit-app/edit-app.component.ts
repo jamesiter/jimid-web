@@ -91,14 +91,15 @@ export class EditAppComponent implements OnInit, AfterViewChecked {
   };
 
   onSubmit() {
-    let id = this.app.id;
     let name = this.app.name;
     let home_page = this.app.home_page;
     let remark = this.app.remark;
 
-    let payload = {id, name, home_page, remark};
+    let payload = { name, home_page, remark};
 
-    let sc = this.http.patch(this.gs.updateAppURL, payload, this.gs.jsonHeadersWithCredentials).subscribe(
+    let url = this.gs.updateAppURL + this.app.id;
+
+    let sc = this.http.patch(url, payload, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
         sc.unsubscribe();
         this.completed.emit();

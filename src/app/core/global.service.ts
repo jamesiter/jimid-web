@@ -52,13 +52,13 @@ export class GlobalService {
   // 更新指定用户密码
   public resetPasswordURL = this.APIBaseURL + '/user_mgmt/_change_password/';
 
-  // 获取AppKey
+  // 获取App
   public searchAppsURL = this.APIBaseURL + '/apps/_search';
-  // 创建AppKey
+  // 创建App
   public createAppURL = this.APIBaseURL + '/app';
-  // 更新AppKey
-  public updateAppURL = this.APIBaseURL + '/app';
-  // 删除AppKey
+  // 更新App
+  public updateAppURL = this.APIBaseURL + '/app/';
+  // 删除App
   public deleteAppURL = this.APIBaseURL + '/app/';
 
   public searchOpenidsURL = this.APIBaseURL + '/openids_admin/_search';

@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit_app_key_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="edit_app_key_modal_label" aria-hidden="true">
+<div class="modal fade" id="edit_app_modal" style="margin-top: 100px; display: none;" tabindex="-1" role="dialog" aria-labelledby="edit_app_modal_label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="x_panel">
@@ -12,7 +12,7 @@
         </div>
         <div class="x_content">
           <br>
-          <form #updateAppKeyForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
+          <form #updateAppForm="ngForm" class="form-horizontal form-label-left" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12">AppKey-ID</label>
               <div class="col-md-9 col-sm-9 col-xs-12">
@@ -52,7 +52,7 @@
             <div class="form-group">
               <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
-                <button type="submit" class="btn btn-success" [disabled]="!updateAppKeyForm.form.valid">提交</button>
+                <button type="submit" class="btn btn-success" [disabled]="!updateAppForm.form.valid">提交</button>
               </div>
             </div>
           </form>
