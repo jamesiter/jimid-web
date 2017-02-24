@@ -16,7 +16,7 @@ export class EditRoleComponent implements OnInit, AfterViewChecked {
 
   public role: Role = new Role();
 
-  private updateRoleForm: NgForm;
+  public updateRoleForm: NgForm;
   @ViewChild("updateRoleForm") currentForm: NgForm;
 
   @Output() completed = new EventEmitter();

@@ -12,15 +12,21 @@ export class GlobalService {
   public jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
   public jsonHeadersWithCredentials = new RequestOptions({ headers: this.jsonHeaders, withCredentials: true });
 
+  /*
+  * 前后端跨域访问时会用到如下配置
+
   public http = 'http://';
   public https = 'https://';
-  public domain  = 'dev.iit.im';
-  public hostName = 'jimauth';
+  public domain  = 'your domain';
+  public hostName = 'your host name';
   public fqdn = this.hostName + '.' + this.domain;
   public httpURL= this.http + this.fqdn;
   public httpsURL= this.https + this.fqdn;
+  public baseURL = this.httpsURL;
 
-  public baseURL = this.httpURL;
+   * */
+
+  public baseURL = document.location.protocol + '//' + document.location.hostname + ':' + document.location.port;
 
   public APIBaseURL = this.baseURL + '/api';
   public authURL = this.APIBaseURL + '/user/_auth';
@@ -61,9 +67,9 @@ export class GlobalService {
   // 删除App
   public deleteAppURL = this.APIBaseURL + '/app/';
 
-  public searchOpenidsURL = this.APIBaseURL + '/openids_admin/_search';
-  public updateOpenidURL = this.APIBaseURL + '/openid_admin/';
-  public deleteOpenidURL = this.APIBaseURL + '/openid_admin/';
+  public searchOpenidsURL = this.APIBaseURL + '/openids_mgmt/_search';
+  public updateOpenidURL = this.APIBaseURL + '/openid_mgmt/';
+  public deleteOpenidURL = this.APIBaseURL + '/openid_mgmt/';
 
   // 通过角色ID获取应用
   public getAppByRoleIDURL = this.APIBaseURL + '/roles/_get_app_by_role_id/';
@@ -98,6 +104,7 @@ export class GlobalService {
 
   constructor(private _http: Http, private router: Router) {
     this.timerRun();
+    console.log(this.baseURL);
   }
 
   timerRun() {
@@ -148,7 +155,7 @@ export class GlobalService {
     );
   }
 
-  navigate(url, queryParams: Params = {}) {
+  navigate(url: string, queryParams: Params = {}) {
     this.router.navigate([url], {queryParams: queryParams});
   }
 }

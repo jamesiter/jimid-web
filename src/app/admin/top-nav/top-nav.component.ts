@@ -1,7 +1,6 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {AuthService} from "../../core/auth.service";
 import {GlobalService} from "../../core/global.service";
-import {Observable, Observer} from "rxjs";
 
 @Component({
   selector: 'app-top-nav',
@@ -16,7 +15,7 @@ export class TopNavComponent implements OnInit {
   private sc;
   */
 
-  constructor(private authService: AuthService, private gs: GlobalService) {
+  constructor(private authService: AuthService, public gs: GlobalService) {
     /* this.topNavTipObservable = Observable.create((observer:Observer<string>) => {
       this.gs.topNavTipObserver = observer;
     });

@@ -14,10 +14,10 @@ declare let $: any;
 })
 export class EditRoleAppComponent implements OnInit {
 
-  private role: Role = new Role();
-  private otherApps: App[] = [];
-  private page: number = 1;
-  private pageSize: number = 10;
+  public role: Role = new Role();
+  public otherApps: App[] = [];
+  public page: number = 1;
+  public pageSize: number = 10;
 
   private params: URLSearchParams = new URLSearchParams();
 
@@ -60,7 +60,7 @@ export class EditRoleAppComponent implements OnInit {
     )
   }
 
-  addApp(appid) {
+  addApp(appid: string) {
     let url = this.gs.addAppToRoleURL + this.role.id.toString() + '/' + appid.toString();
 
     let sc = this.http.post(url, {}, this.gs.jsonHeadersWithCredentials).subscribe(
@@ -79,7 +79,7 @@ export class EditRoleAppComponent implements OnInit {
     );
   }
 
-  deleteApp(appid) {
+  deleteApp(appid: string) {
     let url = this.gs.deleteAppFromRoleURL + this.role.id.toString() + '/' + appid.toString();
 
     let sc = this.http.delete(url, this.gs.jsonHeadersWithCredentials).subscribe(
@@ -99,7 +99,7 @@ export class EditRoleAppComponent implements OnInit {
   }
 
   getOtherApps() {
-    let ids = [];
+    let ids: string[] = [];
     for (let app of this.role.apps) {
       ids.push(app['id'])
     }

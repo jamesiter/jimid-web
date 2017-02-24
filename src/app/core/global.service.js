@@ -1,19 +1,13 @@
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var core_1 = require('@angular/core');
-var http_1 = require("@angular/http");
-var GlobalService = (function () {
+import { Injectable } from '@angular/core';
+import { Headers, RequestOptions, Http } from "@angular/http";
+import { Router } from "@angular/router";
+export var GlobalService = (function () {
     function GlobalService(_http, router) {
         this._http = _http;
         this.router = router;
         this.current_user = {};
-        this.jsonHeaders = new http_1.Headers({ 'Content-Type': 'application/json' });
-        this.jsonHeadersWithCredentials = new http_1.RequestOptions({ headers: this.jsonHeaders, withCredentials: true });
+        this.jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
+        this.jsonHeadersWithCredentials = new RequestOptions({ headers: this.jsonHeaders, withCredentials: true });
         this.http = 'http://';
         this.https = 'https://';
         this.domain = 'dev.iit.im';
@@ -58,9 +52,9 @@ var GlobalService = (function () {
         this.updateAppURL = this.APIBaseURL + '/app/';
         // 删除App
         this.deleteAppURL = this.APIBaseURL + '/app/';
-        this.searchOpenidsURL = this.APIBaseURL + '/openids_admin/_search';
-        this.updateOpenidURL = this.APIBaseURL + '/openid_admin/';
-        this.deleteOpenidURL = this.APIBaseURL + '/openid_admin/';
+        this.searchOpenidsURL = this.APIBaseURL + '/openids_mgmt/_search';
+        this.updateOpenidURL = this.APIBaseURL + '/openid_mgmt/';
+        this.deleteOpenidURL = this.APIBaseURL + '/openid_mgmt/';
         // 通过角色ID获取应用
         this.getAppByRoleIDURL = this.APIBaseURL + '/roles/_get_app_by_role_id/';
         // 获取角色及用户和应用的映射
@@ -137,9 +131,14 @@ var GlobalService = (function () {
         if (queryParams === void 0) { queryParams = {}; }
         this.router.navigate([url], { queryParams: queryParams });
     };
-    GlobalService = __decorate([
-        core_1.Injectable()
-    ], GlobalService);
+    GlobalService.decorators = [
+        { type: Injectable },
+    ];
+    /** @nocollapse */
+    GlobalService.ctorParameters = [
+        { type: Http, },
+        { type: Router, },
+    ];
     return GlobalService;
 }());
-exports.GlobalService = GlobalService;
+//# sourceMappingURL=global.service.js.map

@@ -13,17 +13,17 @@ declare let $: any;
 })
 export class OpenidComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  private openids: any[] = [];
-  private page: number = 1;
-  private pages: number[] = [];
-  private pageSize: number = 10;
-  private pageTotal: number = 0;
-  private pageWidth: number = 10;
-  private balanceOfPower = Math.floor(this.pageWidth / 2) + 1;
-  private lastPagination = Math.ceil(this.pageTotal / this.pageSize);
-  private startPagination = 1;
-  private endPagination = this.lastPagination;
-  private keyword: string = '';
+  public openids: any[] = [];
+  public page: number = 1;
+  public pages: number[] = [];
+  public pageSize: number = 10;
+  public pageTotal: number = 0;
+  public pageWidth: number = 10;
+  public balanceOfPower = Math.floor(this.pageWidth / 2) + 1;
+  public lastPagination = Math.ceil(this.pageTotal / this.pageSize);
+  public startPagination = 1;
+  public endPagination = this.lastPagination;
+  public keyword: string = '';
 
   private subscription: Subscription;
   private subscriptionBySearch: Subscription;
@@ -70,7 +70,7 @@ export class OpenidComponent implements OnInit, AfterViewInit, OnDestroy {
       );
   }
 
-  searchContent(keyword) {
+  searchContent(keyword: string) {
     this.page = 1;
     this.searchContentStream.next(keyword);
   }
@@ -123,13 +123,13 @@ export class OpenidComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gs.navigate('/admin/app-manage/openid', params);
   };
 
-  changePage(thePage) {
+  changePage(thePage: number) {
     this.page = thePage;
 
     this.refresh();
   }
 
-  changePageSize(thePageSize) {
+  changePageSize(thePageSize: number) {
     this.pageSize = thePageSize;
     this.page = 1;
 

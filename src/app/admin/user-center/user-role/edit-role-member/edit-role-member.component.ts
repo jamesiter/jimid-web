@@ -15,11 +15,11 @@ declare let $: any;
 })
 export class EditRoleMemberComponent implements OnInit {
 
-  private role: Role = new Role();
-  private freeUsers: User[] = [];
-  private page: number = 1;
-  private pageSize: number = 10;
-  private keyword: string = '';
+  public role: Role = new Role();
+  public freeUsers: User[] = [];
+  public page: number = 1;
+  public pageSize: number = 10;
+  public keyword: string = '';
 
   private subscriptionBySearch: Subscription;
   private searchContentStream = new Subject<string>();
@@ -95,7 +95,7 @@ export class EditRoleMemberComponent implements OnInit {
     )
   }
 
-  addMember(uid) {
+  addMember(uid: number) {
     let url = this.gs.addMemberToRoleURL + this.role.id.toString() + '/' + uid.toString();
 
     let sc = this.http.post(url, {}, this.gs.jsonHeadersWithCredentials).subscribe(
@@ -114,7 +114,7 @@ export class EditRoleMemberComponent implements OnInit {
     );
   }
 
-  deleteMember(uid) {
+  deleteMember(uid: number) {
     let url = this.gs.deleteMemberFromRoleURL + this.role.id.toString() + '/' + uid.toString();
 
     let sc = this.http.delete(url, this.gs.jsonHeadersWithCredentials).subscribe(
@@ -133,7 +133,7 @@ export class EditRoleMemberComponent implements OnInit {
     );
   }
 
-  searchContent(keyword) {
+  searchContent(keyword: string) {
     this.searchContentStream.next(keyword);
   }
 

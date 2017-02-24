@@ -10,7 +10,7 @@ import {GlobalService} from "../../../core/global.service";
 })
 export class AppListComponent implements OnInit, AfterViewInit {
 
-  private apps: App[] = [];
+  public apps: App[] = [];
 
   constructor(private http: Http, private gs: GlobalService) {
   }

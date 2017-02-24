@@ -14,17 +14,17 @@ declare let $: any;
 })
 export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  private users: any[] = [];
-  private page: number = 1;
-  private pages: number[] = [];
-  private pageSize: number = 10;
-  private pageTotal: number = 0;
-  private pageWidth: number = 10;
-  private balanceOfPower = Math.floor(this.pageWidth / 2) + 1;
-  private lastPagination = Math.ceil(this.pageTotal / this.pageSize);
-  private startPagination = 1;
-  private endPagination = this.lastPagination;
-  private keyword: string = '';
+  public users: any[] = [];
+  public page: number = 1;
+  public pages: number[] = [];
+  public pageSize: number = 10;
+  public pageTotal: number = 0;
+  public pageWidth: number = 10;
+  public balanceOfPower = Math.floor(this.pageWidth / 2) + 1;
+  public lastPagination = Math.ceil(this.pageTotal / this.pageSize);
+  public startPagination = 1;
+  public endPagination = this.lastPagination;
+  public keyword: string = '';
 
   private subscription: Subscription;
   private subscriptionBySearch: Subscription;
@@ -71,7 +71,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
       );
   }
 
-  searchContent(keyword) {
+  searchContent(keyword: string) {
     this.page = 1;
     this.searchContentStream.next(keyword);
   }
@@ -154,8 +154,8 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   batchEnableUser() {
-    let ids = [];
-    $("tbody tr").find('td input[type="checkbox"]:eq(0):checked').parent().next().each(function(i, ele) {
+    let ids: number[] = [];
+    $("tbody tr").find('td input[type="checkbox"]:eq(0):checked').parent().next().each(function(i: number, ele: any) {
       ids.push($(ele).text());
     });
 
@@ -175,8 +175,8 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   batchDisableUser() {
-    let ids = [];
-    $("tbody tr").find('td input[type="checkbox"]:eq(0):checked').parent().next().each(function(i, ele) {
+    let ids: number[] = [];
+    $("tbody tr").find('td input[type="checkbox"]:eq(0):checked').parent().next().each(function(i: number, ele: any) {
       ids.push($(ele).text());
     });
 
@@ -195,7 +195,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  enableUser(id) {
+  enableUser(id: number) {
     let url = this.gs.enableUserURL + id.toString();
     let sc = this.http.patch(url, {}, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
@@ -210,7 +210,7 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
-  disableUser(id) {
+  disableUser(id: number) {
     let url = this.gs.disableUserURL + id.toString();
     let sc = this.http.patch(url, {}, this.gs.jsonHeadersWithCredentials).subscribe(
       (req) => {
@@ -236,13 +236,13 @@ export class UserListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.gs.navigate('/admin/user/user-list', params);
   };
 
-  changePage(thePage) {
+  changePage(thePage: number) {
     this.page = thePage;
 
     this.refresh();
   }
 
-  changePageSize(thePageSize) {
+  changePageSize(thePageSize: number) {
     this.pageSize = thePageSize;
     this.page = 1;
 

@@ -13,7 +13,7 @@ declare let $: any;
 })
 export class UserRoleComponent implements OnInit, AfterViewInit {
 
-  private roles: Role[] = [];
+  public roles: Role[] = [];
 
   constructor(private http: Http, private gs: GlobalService) {
   }

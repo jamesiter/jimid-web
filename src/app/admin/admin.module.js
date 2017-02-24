@@ -1,45 +1,37 @@
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var core_1 = require('@angular/core');
-var common_1 = require('@angular/common');
-var admin_component_1 = require('./admin.component');
-var admin_routing_module_1 = require("./admin-routing.module");
-var footer_component_1 = require("./footer/footer.component");
-var sidebar_menu_component_1 = require("./sidebar-menu/sidebar-menu.component");
-var footer_menu_component_1 = require("./footer-menu/footer-menu.component");
-var top_nav_component_1 = require("./top-nav/top-nav.component");
-var dashboard_component_1 = require("./dashboard/dashboard.component");
-var user_center_module_1 = require("./user-center/user-center.module");
-var AdminModule = (function () {
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AdminComponent } from './admin.component';
+import { AdminRoutingModule } from "./admin-routing.module";
+import { FooterComponent } from "./footer/footer.component";
+import { SidebarMenuComponent } from "./sidebar-menu/sidebar-menu.component";
+import { FooterMenuComponent } from "./footer-menu/footer-menu.component";
+import { TopNavComponent } from "./top-nav/top-nav.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { UserCenterModule } from "./user-center/user-center.module";
+import { AppManageModule } from "./app-manage/app-manage.module";
+export var AdminModule = (function () {
     function AdminModule() {
     }
-    AdminModule = __decorate([
-        core_1.NgModule({
-            imports: [
-                common_1.CommonModule,
-                user_center_module_1.UserCenterModule,
-                admin_routing_module_1.AdminRoutingModule
-            ],
-            declarations: [
-                footer_component_1.FooterComponent,
-                sidebar_menu_component_1.SidebarMenuComponent,
-                footer_menu_component_1.FooterMenuComponent,
-                top_nav_component_1.TopNavComponent,
-                dashboard_component_1.DashboardComponent,
-                admin_component_1.AdminComponent
-            ]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AdminModule);
+    AdminModule.decorators = [
+        { type: NgModule, args: [{
+                    imports: [
+                        CommonModule,
+                        UserCenterModule,
+                        AppManageModule,
+                        AdminRoutingModule
+                    ],
+                    declarations: [
+                        FooterComponent,
+                        SidebarMenuComponent,
+                        FooterMenuComponent,
+                        TopNavComponent,
+                        DashboardComponent,
+                        AdminComponent
+                    ]
+                },] },
+    ];
+    /** @nocollapse */
+    AdminModule.ctorParameters = [];
     return AdminModule;
 }());
-exports.AdminModule = AdminModule;
 //# sourceMappingURL=admin.module.js.map

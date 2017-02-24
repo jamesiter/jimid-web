@@ -26,6 +26,7 @@ import {UserModule} from "./user/user.module";
     AppRoutingModule,
   ],
   providers: [
+    {provide: Window, useValue: window},
     GlobalService,
     AuthService,
     AuthGuard,

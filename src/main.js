@@ -1,11 +1,11 @@
-"use strict";
-require('./polyfills.ts');
-var platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
-var core_1 = require('@angular/core');
-var environment_1 = require('./environments/environment');
-var _1 = require('./app/');
-if (environment_1.environment.production) {
-    core_1.enableProdMode();
+import './polyfills.ts';
+import { enableProdMode } from '@angular/core';
+import { environment } from './environments/environment';
+// import { AppModule } from './app/';
+if (environment.production) {
+    enableProdMode();
 }
-platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(_1.AppModule);
+import { platformBrowser } from '@angular/platform-browser';
+import { AppModuleNgFactory } from './aot/app/app.module.ngfactory';
+platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
 //# sourceMappingURL=main.js.map

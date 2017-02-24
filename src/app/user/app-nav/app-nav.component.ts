@@ -9,7 +9,7 @@ import {App} from "../../admin/app-manage/app-list/app";
   styleUrls: ['./app-nav.component.css']
 })
 export class AppNavComponent implements OnInit, AfterViewInit {
-  private appList: App[] = [];
+  public appList: App[] = [];
 
   constructor(private http: Http, private gs: GlobalService) {
   }

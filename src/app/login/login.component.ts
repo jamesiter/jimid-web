@@ -10,11 +10,11 @@ import {GlobalService} from "../core/global.service";
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: [
-    'vendors/bootstrap/dist/css/bootstrap.min.css',
-    'vendors/font-awesome/css/font-awesome.min.css',
-    'vendors/nprogress/nprogress.css',
-    'vendors/animate.css/animate.min.css',
-    'assets/src/scss/custom.css',
+    '../../vendors/bootstrap/dist/css/bootstrap.min.css',
+    '../../vendors/font-awesome/css/font-awesome.min.css',
+    '../../vendors/nprogress/nprogress.css',
+    '../../vendors/animate.css/animate.min.css',
+    '../../assets/src/scss/custom.css',
     './login.component.css',
   ],
   encapsulation: ViewEncapsulation.Native

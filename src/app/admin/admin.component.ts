@@ -1,13 +1,12 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {Http, Response} from "@angular/http";
 import {GlobalService} from "../core/global.service";
-import {Observable, Observer} from "rxjs";
+import {Observable, Observer, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: [
-    'assets/src/scss/custom.css',
+    '../../assets/src/scss/custom.css',
     './admin.component.css',
   ],
   encapsulation: ViewEncapsulation.None
@@ -15,9 +14,9 @@ import {Observable, Observer} from "rxjs";
 export class AdminComponent implements OnInit {
 
   private Observable: Observable<number>;
-  private sc;
+  private sc: Subscription;
 
-  constructor(private http: Http, private gs: GlobalService) {
+  constructor(public gs: GlobalService) {
 
     this.Observable = Observable.create((observer: Observer<number>) => {
       this.gs.roleObserver = observer;

@@ -20,8 +20,8 @@
               <div class="col-md-9 col-sm-9 col-xs-12">
                 <input type="text" class="form-control" placeholder="角色名称" minlength="1" maxlength="30"
                        required name="role_name" [(ngModel)]="role.name">
-                <div *ngIf="formErrors.role_name" class="alert alert-danger hint-board">
-                  {{ formErrors.role_name }}
+                <div *ngIf="formErrors.name" class="alert alert-danger hint-board">
+                  {{ formErrors.name }}
                 </div>
               </div>
             </div>

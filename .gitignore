@@ -16,6 +16,9 @@
 .c9/
 *.launch
 .settings/
+*.ngfactory.ts
+*.module.metadata.json
+*.css.shim.ts
 
 # misc
 /.sass-cache

@@ -11,7 +11,7 @@ export class UserTopNavComponent implements OnInit {
 
   @Input() login_name: string = '';
 
-  constructor(private authService: AuthService, private gs: GlobalService) {
+  constructor(private authService: AuthService, public gs: GlobalService) {
   }
 
   ngOnInit() {
